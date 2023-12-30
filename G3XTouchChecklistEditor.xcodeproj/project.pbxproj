@@ -1,0 +1,622 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ABE1C2B12B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2B02B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift */; };
+		ABE1C2B32B3FAF7700BD40E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2B22B3FAF7700BD40E4 /* ContentView.swift */; };
+		ABE1C2B52B3FAF7800BD40E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE1C2B42B3FAF7800BD40E4 /* Assets.xcassets */; };
+		ABE1C2B92B3FAF7800BD40E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE1C2B82B3FAF7800BD40E4 /* Preview Assets.xcassets */; };
+		ABE1C2C32B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2C22B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.swift */; };
+		ABE1C2CD2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2CC2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.swift */; };
+		ABE1C2CF2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2CE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		ABE1C2BF2B3FAF7800BD40E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABE1C2A52B3FAF7700BD40E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABE1C2AC2B3FAF7700BD40E4;
+			remoteInfo = G3XTouchChecklistEditor;
+		};
+		ABE1C2C92B3FAF7800BD40E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ABE1C2A52B3FAF7700BD40E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABE1C2AC2B3FAF7700BD40E4;
+			remoteInfo = G3XTouchChecklistEditor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		ABE1C2AD2B3FAF7700BD40E4 /* G3XTouchChecklistEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = G3XTouchChecklistEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABE1C2B02B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G3XTouchChecklistEditorApp.swift; sourceTree = "<group>"; };
+		ABE1C2B22B3FAF7700BD40E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ABE1C2B42B3FAF7800BD40E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ABE1C2B62B3FAF7800BD40E4 /* G3XTouchChecklistEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = G3XTouchChecklistEditor.entitlements; sourceTree = "<group>"; };
+		ABE1C2B82B3FAF7800BD40E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ABE1C2BE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = G3XTouchChecklistEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABE1C2C22B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G3XTouchChecklistEditorTests.swift; sourceTree = "<group>"; };
+		ABE1C2C82B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = G3XTouchChecklistEditorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABE1C2CC2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G3XTouchChecklistEditorUITests.swift; sourceTree = "<group>"; };
+		ABE1C2CE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G3XTouchChecklistEditorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ABE1C2AA2B3FAF7700BD40E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABE1C2BB2B3FAF7800BD40E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABE1C2C52B3FAF7800BD40E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ABE1C2A42B3FAF7700BD40E4 = {
+			isa = PBXGroup;
+			children = (
+				ABE1C2AF2B3FAF7700BD40E4 /* G3XTouchChecklistEditor */,
+				ABE1C2C12B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests */,
+				ABE1C2CB2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests */,
+				ABE1C2AE2B3FAF7700BD40E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ABE1C2AE2B3FAF7700BD40E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ABE1C2AD2B3FAF7700BD40E4 /* G3XTouchChecklistEditor.app */,
+				ABE1C2BE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.xctest */,
+				ABE1C2C82B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ABE1C2AF2B3FAF7700BD40E4 /* G3XTouchChecklistEditor */ = {
+			isa = PBXGroup;
+			children = (
+				ABE1C2B02B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift */,
+				ABE1C2B22B3FAF7700BD40E4 /* ContentView.swift */,
+				ABE1C2B42B3FAF7800BD40E4 /* Assets.xcassets */,
+				ABE1C2B62B3FAF7800BD40E4 /* G3XTouchChecklistEditor.entitlements */,
+				ABE1C2B72B3FAF7800BD40E4 /* Preview Content */,
+			);
+			path = G3XTouchChecklistEditor;
+			sourceTree = "<group>";
+		};
+		ABE1C2B72B3FAF7800BD40E4 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				ABE1C2B82B3FAF7800BD40E4 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		ABE1C2C12B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				ABE1C2C22B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.swift */,
+			);
+			path = G3XTouchChecklistEditorTests;
+			sourceTree = "<group>";
+		};
+		ABE1C2CB2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				ABE1C2CC2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.swift */,
+				ABE1C2CE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift */,
+			);
+			path = G3XTouchChecklistEditorUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ABE1C2AC2B3FAF7700BD40E4 /* G3XTouchChecklistEditor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABE1C2D22B3FAF7800BD40E4 /* Build configuration list for PBXNativeTarget "G3XTouchChecklistEditor" */;
+			buildPhases = (
+				ABE1C2A92B3FAF7700BD40E4 /* Sources */,
+				ABE1C2AA2B3FAF7700BD40E4 /* Frameworks */,
+				ABE1C2AB2B3FAF7700BD40E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = G3XTouchChecklistEditor;
+			productName = G3XTouchChecklistEditor;
+			productReference = ABE1C2AD2B3FAF7700BD40E4 /* G3XTouchChecklistEditor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		ABE1C2BD2B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABE1C2D52B3FAF7800BD40E4 /* Build configuration list for PBXNativeTarget "G3XTouchChecklistEditorTests" */;
+			buildPhases = (
+				ABE1C2BA2B3FAF7800BD40E4 /* Sources */,
+				ABE1C2BB2B3FAF7800BD40E4 /* Frameworks */,
+				ABE1C2BC2B3FAF7800BD40E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABE1C2C02B3FAF7800BD40E4 /* PBXTargetDependency */,
+			);
+			name = G3XTouchChecklistEditorTests;
+			productName = G3XTouchChecklistEditorTests;
+			productReference = ABE1C2BE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		ABE1C2C72B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABE1C2D82B3FAF7800BD40E4 /* Build configuration list for PBXNativeTarget "G3XTouchChecklistEditorUITests" */;
+			buildPhases = (
+				ABE1C2C42B3FAF7800BD40E4 /* Sources */,
+				ABE1C2C52B3FAF7800BD40E4 /* Frameworks */,
+				ABE1C2C62B3FAF7800BD40E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABE1C2CA2B3FAF7800BD40E4 /* PBXTargetDependency */,
+			);
+			name = G3XTouchChecklistEditorUITests;
+			productName = G3XTouchChecklistEditorUITests;
+			productReference = ABE1C2C82B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ABE1C2A52B3FAF7700BD40E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					ABE1C2AC2B3FAF7700BD40E4 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					ABE1C2BD2B3FAF7800BD40E4 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = ABE1C2AC2B3FAF7700BD40E4;
+					};
+					ABE1C2C72B3FAF7800BD40E4 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = ABE1C2AC2B3FAF7700BD40E4;
+					};
+				};
+			};
+			buildConfigurationList = ABE1C2A82B3FAF7700BD40E4 /* Build configuration list for PBXProject "G3XTouchChecklistEditor" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ABE1C2A42B3FAF7700BD40E4;
+			productRefGroup = ABE1C2AE2B3FAF7700BD40E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ABE1C2AC2B3FAF7700BD40E4 /* G3XTouchChecklistEditor */,
+				ABE1C2BD2B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests */,
+				ABE1C2C72B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ABE1C2AB2B3FAF7700BD40E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABE1C2B92B3FAF7800BD40E4 /* Preview Assets.xcassets in Resources */,
+				ABE1C2B52B3FAF7800BD40E4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABE1C2BC2B3FAF7800BD40E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABE1C2C62B3FAF7800BD40E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ABE1C2A92B3FAF7700BD40E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABE1C2B32B3FAF7700BD40E4 /* ContentView.swift in Sources */,
+				ABE1C2B12B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABE1C2BA2B3FAF7800BD40E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABE1C2C32B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ABE1C2C42B3FAF7800BD40E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABE1C2CD2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITests.swift in Sources */,
+				ABE1C2CF2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ABE1C2C02B3FAF7800BD40E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABE1C2AC2B3FAF7700BD40E4 /* G3XTouchChecklistEditor */;
+			targetProxy = ABE1C2BF2B3FAF7800BD40E4 /* PBXContainerItemProxy */;
+		};
+		ABE1C2CA2B3FAF7800BD40E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = ABE1C2AC2B3FAF7700BD40E4 /* G3XTouchChecklistEditor */;
+			targetProxy = ABE1C2C92B3FAF7800BD40E4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		ABE1C2D02B3FAF7800BD40E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ABE1C2D12B3FAF7800BD40E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		ABE1C2D32B3FAF7800BD40E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = G3XTouchChecklistEditor/G3XTouchChecklistEditor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"G3XTouchChecklistEditor/Preview Content\"";
+				DEVELOPMENT_TEAM = CWNCTDGDL5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		ABE1C2D42B3FAF7800BD40E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = G3XTouchChecklistEditor/G3XTouchChecklistEditor.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"G3XTouchChecklistEditor/Preview Content\"";
+				DEVELOPMENT_TEAM = CWNCTDGDL5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ABE1C2D62B3FAF7800BD40E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CWNCTDGDL5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/G3XTouchChecklistEditor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/G3XTouchChecklistEditor";
+			};
+			name = Debug;
+		};
+		ABE1C2D72B3FAF7800BD40E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CWNCTDGDL5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/G3XTouchChecklistEditor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/G3XTouchChecklistEditor";
+			};
+			name = Release;
+		};
+		ABE1C2D92B3FAF7800BD40E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CWNCTDGDL5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = G3XTouchChecklistEditor;
+			};
+			name = Debug;
+		};
+		ABE1C2DA2B3FAF7800BD40E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CWNCTDGDL5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditorUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = G3XTouchChecklistEditor;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ABE1C2A82B3FAF7700BD40E4 /* Build configuration list for PBXProject "G3XTouchChecklistEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABE1C2D02B3FAF7800BD40E4 /* Debug */,
+				ABE1C2D12B3FAF7800BD40E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABE1C2D22B3FAF7800BD40E4 /* Build configuration list for PBXNativeTarget "G3XTouchChecklistEditor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABE1C2D32B3FAF7800BD40E4 /* Debug */,
+				ABE1C2D42B3FAF7800BD40E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABE1C2D52B3FAF7800BD40E4 /* Build configuration list for PBXNativeTarget "G3XTouchChecklistEditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABE1C2D62B3FAF7800BD40E4 /* Debug */,
+				ABE1C2D72B3FAF7800BD40E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABE1C2D82B3FAF7800BD40E4 /* Build configuration list for PBXNativeTarget "G3XTouchChecklistEditorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABE1C2D92B3FAF7800BD40E4 /* Debug */,
+				ABE1C2DA2B3FAF7800BD40E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ABE1C2A52B3FAF7700BD40E4 /* Project object */;
+}

@@ -10,8 +10,43 @@ import SwiftUI
 @main
 struct G3XTouchChecklistEditorApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        DocumentGroup(newDocument: ChecklistFile())
+        { file in
+            ContentView(document: file.document)
+#if os(macOS)
+                .frame(minWidth: 800, idealWidth: 1024, maxWidth: .infinity, minHeight: 800, idealHeight: 1000, maxHeight: .infinity)
+#endif
         }
+        .windowResizability(.contentSize)
+        
+#if os(macOS)
+        Settings
+        {
+            GeneralSettings()
+        }
+#endif
+    }
+}
+
+extension Scene {
+    func windowResizabilityContentSize() -> some Scene {
+        if #available(macOS 13.0, *) {
+            return windowResizability(.contentSize)
+        } else {
+            return self
+        }
+    }
+}
+
+struct GeneralSettings: View
+{
+    var body: some View
+    {
+        VStack {
+            Text("Hello world")
+                .padding()
+        }
+        .padding()
+        .fixedSize()
     }
 }

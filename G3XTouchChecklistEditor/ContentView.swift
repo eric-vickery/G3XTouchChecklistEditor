@@ -8,17 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+    @ObservedObject var document: ChecklistFile
+    @Environment(\.undoManager) var undoManager
+
+    var body: some View
+    {
+        document.undoManager = undoManager
+        return VStack
+        {
+            ChecklistPropertiesView(document: document)
+            Divider()
+            ScrollView
+            {
+                ForEach(document.groups)
+                { group in
+                    GroupsView(group: group)
+                }
+            }
+            Spacer()
         }
-        .padding()
+        .textFieldStyle(.roundedBorder)
+        .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(document: ChecklistFile())
 }

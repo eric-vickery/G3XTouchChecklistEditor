@@ -1,5 +1,7 @@
-- Add code to put cut items back where they were cut from on undo
+- Add code to put cut/deleted items back where they were cut from on undo
 - Add code to insert new items at the selection point
-- Add code to edit entries
 - Make sure saving works correctly once the file has been edited
 - Add ability to modify groups (rename, move, cut, copy, paste, etc...)
+- Figure out how to get the parent in the data for cut/copy/paste
+- Fix the undo of a move
+- Implement Copy in the context menu

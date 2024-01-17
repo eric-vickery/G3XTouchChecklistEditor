@@ -41,7 +41,7 @@ struct ChecklistView: View
                 .onDelete { indexSet in
                     withAnimation
                     {
-                        checklist.entries.remove(atOffsets: indexSet)
+                        checklist.removeEntries(atOffsets: indexSet)
                     }
                 }
             }
@@ -57,15 +57,17 @@ struct ChecklistView: View
             .border(.gray)
             .frame(minHeight: minRowHeight * 20)
 #if os(macOS)
+            .onDeleteCommand(perform:  selection.isEmpty ? nil : { deleteSelection() })
             .copyable(checklist.entries.filter( { selection.contains($0.id) }))
             .pasteDestination(for: Entry.self) { entries in
                 checklist.addEntries(contentsOf: entries)
             }
-            .cuttable(for: Entry.self) {
+            .cuttable(for: Entry.self, action:
+             {
                 let entries = checklist.entries.filter( { selection.contains($0.id) })
-                checklist.removeEntries(inSet: selection)
+                deleteSelection()
                 return entries
-            }
+            })
 #endif
             .contextMenu(forSelectionType: Entry.ID.self) { items in
                 if items.isEmpty { // Empty area menu.
@@ -80,11 +82,11 @@ struct ChecklistView: View
                          }
                      }
                      Button("Copy") { }
-                     Button("Delete", role: .destructive) { checklist.removeEntries(inSet: items) }
+                     Button("Delete", role: .destructive) { deleteSelection() }
 
                  } else { // Multi-item menu.
                      Button("Copy") { }
-                     Button("Delete Selected", role: .destructive) { checklist.removeEntries(inSet: items) }
+                     Button("Delete Selected", role: .destructive) { deleteSelection() }
                  }
             } primaryAction: { items in
                 if items.count == 1
@@ -102,7 +104,17 @@ struct ChecklistView: View
             HStack
             {
                 Label(checklist.name, systemImage: "checklist")
-                
+                    .onTapGesture(count: 2)
+                    {
+                        showEntryEditSheet.toggle()
+                    }
+                    .onTapGesture
+                    {
+                        withAnimation()
+                        {
+                            checklist.isExpanded.toggle()
+                        }
+                    }
                 Spacer()
                 if checklist.isExpanded
                 {
@@ -141,7 +153,14 @@ struct ChecklistView: View
         .font(.title2)
         .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
     }
+    
+private func deleteSelection() -> Void
+    {
+        checklist.removeEntries(inSet: selection)
+        selection.removeAll()
+    }
 }
+
 
 //#Preview {
 //    ChecklistView()

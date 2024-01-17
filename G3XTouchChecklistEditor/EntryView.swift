@@ -72,28 +72,8 @@ struct EntryView: View {
             }
             BlankLinesView(entry: entry)
         }
-//        .onLongPressGesture
-//        {
-//            print("You pressed on \(self.entry.text)")
-//        }
     }
 }
-//                                            Button(action: {
-//
-//                                            }, label: {
-//                                                Image(systemName: "pencil")
-//                                            })
-//                                            .cornerRadius(5)
-//                                            Spacer()
-//                                    Picker("Type", selection: $document.groups[groupIndex].checklists[checklistIndex].entries[entryIndex].type) {
-//                                        Text("Undefined").tag(EntryType.undefined)
-//                                        Text("Text").tag(EntryType.text)
-//                                        Text("Note").tag(EntryType.note)
-//                                        Text("Subtitle").tag(EntryType.subtitle)
-//                                        Text("Warning").tag(EntryType.warning)
-//                                        Text("Caution").tag(EntryType.caution)
-//                                        Text("Challenge").tag(EntryType.challenge)
-//                                        }
 
 private func getPaddingAmount(justification: Justification) -> CGFloat
 {

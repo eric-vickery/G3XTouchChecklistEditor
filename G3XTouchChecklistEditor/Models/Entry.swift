@@ -76,6 +76,7 @@ class Entry: ObservableObject, Identifiable, Transferable
     
     var undoManager: UndoManager?
     @Published var id = UUID()
+    @Published var parent: Checklist? = nil
     @Published var type:EntryType = .undefined
     @Published var justification:Justification = .left
     @Published var numBlankLinesFollowing:Int = 0
@@ -92,7 +93,7 @@ class Entry: ObservableObject, Identifiable, Transferable
     importing:
         { data in
             var myData = data
-            guard let entry = Entry(&myData) else
+            guard let entry = Entry(&myData, parent: nil) else
             {
                 throw "Could not decode transferrable"
             }
@@ -100,14 +101,14 @@ class Entry: ObservableObject, Identifiable, Transferable
         }
     }
     
-    static func parseEntries(_ data: inout Data) -> [Entry]?
+    static func parseEntries(_ data: inout Data, parent: Checklist?) -> [Entry]?
     {
         var entryArray:[Entry]?
         var couldBeMoreEntries = true
         
         repeat
         {
-            if let entry = Entry(&data)
+            if let entry = Entry(&data, parent: parent)
             {
                 entryArray == nil ? entryArray = [entry] : entryArray!.append(entry)
             }
@@ -121,8 +122,10 @@ class Entry: ObservableObject, Identifiable, Transferable
                 return entryArray
     }
     
-    init?(_ data: inout Data)
+    init?(_ data: inout Data, parent: Checklist?)
     {
+        self.parent = parent
+        
         if !parseHeader(&data)
         {
             return nil

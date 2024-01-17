@@ -67,6 +67,9 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
     @Published var defaultChecklist:UInt8 = 0
     // Don't like this UI data here but these will stay here until I come up with a better way
     @Published var isExpanded = false
+#if os(iOS)
+    @Published var editMode: EditMode = .inactive
+#endif
 
     func validateCRC(_ data: Data) -> Bool
     {
@@ -302,6 +305,85 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
             return true
         }
         return false
+    }
+    
+    func moveGroups(fromOffsets: IndexSet, toOffset: Int)
+    {
+        groups.move(fromOffsets: fromOffsets, toOffset: toOffset)
+        // Only undo if we moved one entry
+//        if fromOffsets.count == 1
+//        {
+//            undoManager?.registerUndo(withTarget: self)
+//            { checklist in
+//                checklist.undoManager?.setActionName("Move Checklist Entry")
+//                checklist.moveEntries(fromOffsets: IndexSet(integer: toOffset), toOffset: fromOffsets.first!)
+//            }
+//        }
+    }
+    
+    func removeGroups(atOffsets: IndexSet)
+    {
+        groups.remove(atOffsets: atOffsets)
+    }
+    
+    func removeGroups(inSet: Set<UUID>)
+    {
+        let removedGroups: [Group] = groups.filter( { inSet.contains($0.id) })
+        groups.removeAll { inSet.contains($0.id) }
+        undoManager?.registerUndo(withTarget: self)
+        { checklistFile in
+            checklistFile.undoManager?.setActionName("Remove Groups")
+            checklistFile.addGroups(contentsOf: removedGroups)
+        }
+    }
+    
+    func removeGroups(contentsOf: [Group])
+    {
+        groups.removeAll(where: { group in
+            contentsOf.contains(where: {groupToRemove in
+                groupToRemove.id == group.id
+            })
+        })
+        undoManager?.registerUndo(withTarget: self)
+        { checklistFile in
+            checklistFile.undoManager?.setActionName("Remove Groups")
+            checklistFile.addGroups(contentsOf: contentsOf)
+        }
+    }
+    
+    func removeGroup(_ group: Group)
+    {
+        groups.removeAll(where: { $0.id == group.id })
+        undoManager?.registerUndo(withTarget: self)
+        { checklistFile in
+            checklistFile.undoManager?.setActionName("Remove Group")
+            checklistFile.addGroup(group)
+        }
+    }
+    
+    func addGroups(contentsOf: [Group])
+    {
+        groups.append(contentsOf: contentsOf)
+        undoManager?.registerUndo(withTarget: self)
+        { checklistFile in
+            checklistFile.undoManager?.setActionName("Add Groups")
+            checklistFile.removeGroups(contentsOf: contentsOf)
+        }
+    }
+    
+    func addGroup(_ group: Group)
+    {
+        groups.append(group)
+        undoManager?.registerUndo(withTarget: self)
+        { checklistFile in
+            checklistFile.undoManager?.setActionName("Add Group")
+            checklistFile.removeGroup(group)
+        }
+    }
+    
+    func getGroup(_ id: UUID) -> Group?
+    {
+        return groups.first(where: { $0.id == id })
     }
 }
 

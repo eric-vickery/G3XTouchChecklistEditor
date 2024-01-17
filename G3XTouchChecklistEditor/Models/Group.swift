@@ -6,8 +6,16 @@
 //
 
 import Foundation
+import CoreTransferable
+import UniformTypeIdentifiers
 
-class Group: ObservableObject, Identifiable
+extension UTType
+{
+    static let checklistGroup = UTType(exportedAs: "com.garmin.g3x.checklist.group")
+}
+
+
+class Group: ObservableObject, Identifiable, Transferable, Equatable
 {
     static let header = "<0"
     static let footer = ">"
@@ -19,6 +27,29 @@ class Group: ObservableObject, Identifiable
     // Don't like this UI data here but these will stay here until I come up with a better way
     @Published var isExpanded = false
 
+    static func == (lhs: Group, rhs: Group) -> Bool 
+    {
+        return lhs.id == rhs.id
+    }
+    
+    static var transferRepresentation: some TransferRepresentation
+    {
+        DataRepresentation(contentType: .checklistGroup)
+        { checklistGroup in
+            var data = Data()
+            return checklistGroup.exportData(&data)
+        }
+    importing:
+        { data in
+            var myData = data
+            guard let group = Group(&myData) else
+            {
+                throw "Could not decode transferrable"
+            }
+            return group
+        }
+    }
+    
     static func parseGroups(_ data: inout Data) -> [Group]?
     {
         var groupArray:[Group]?
@@ -64,11 +95,11 @@ class Group: ObservableObject, Identifiable
     
     init()
     {
-        name = "Group 1"
+        name = "New Group"
         checklists = [Checklist()]
     }
     
-    func exportData(_ data: inout Data) -> Void
+    func exportData(_ data: inout Data) -> Data
     {
         data.append(contentsOf: Group.header.data(using: .ascii)!)
         data.append(contentsOf: name.data(using: .ascii)!)
@@ -80,6 +111,8 @@ class Group: ObservableObject, Identifiable
         }
         data.append(contentsOf: Group.footer.data(using: .ascii)!)
         data.append(contentsOf: ChecklistFile.separator)
+        
+        return data
     }
     
     func validateHeader(_ data: inout Data) -> Bool

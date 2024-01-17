@@ -13,7 +13,7 @@ struct ChecklistPropertiesView: View {
 
     var body: some View
     {
-        DisclosureGroup
+        DisclosureGroup(isExpanded: $document.isExpanded)
         {
             VStack
             {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABA3F8B02B55F11A006F5355 /* GroupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */; };
 		ABA78DD82B4286A200BD13A2 /* ChecklistPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DD72B4286A200BD13A2 /* ChecklistPropertiesView.swift */; };
 		ABA78DDA2B4286E900BD13A2 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DD92B4286E900BD13A2 /* EntryView.swift */; };
 		ABA78DDC2B43AD3700BD13A2 /* ChecklistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DDB2B43AD3700BD13A2 /* ChecklistsView.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditView.swift; sourceTree = "<group>"; };
 		ABA78DD72B4286A200BD13A2 /* ChecklistPropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistPropertiesView.swift; sourceTree = "<group>"; };
 		ABA78DD92B4286E900BD13A2 /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		ABA78DDB2B43AD3700BD13A2 /* ChecklistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				ABA78DE52B44E82700BD13A2 /* PropertyExtension.swift */,
 				ABA78DD92B4286E900BD13A2 /* EntryView.swift */,
 				ABA78DEC2B4639BD00BD13A2 /* EntryEditView.swift */,
+				ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */,
 				ABE1C2B42B3FAF7800BD40E4 /* Assets.xcassets */,
 				ABE1C2B62B3FAF7800BD40E4 /* G3XTouchChecklistEditor.entitlements */,
 				ABE1C2B72B3FAF7800BD40E4 /* Preview Content */,
@@ -320,6 +323,7 @@
 				ABA78DDC2B43AD3700BD13A2 /* ChecklistsView.swift in Sources */,
 				ABA78DE82B44F1CC00BD13A2 /* ChecklistView.swift in Sources */,
 				ABA78DEA2B44F46200BD13A2 /* GroupsView.swift in Sources */,
+				ABA3F8B02B55F11A006F5355 /* GroupEditView.swift in Sources */,
 				ABA78DD82B4286A200BD13A2 /* ChecklistPropertiesView.swift in Sources */,
 				ABA78DE62B44E82700BD13A2 /* PropertyExtension.swift in Sources */,
 				ABA78DE42B4474B900BD13A2 /* Entry.swift in Sources */,

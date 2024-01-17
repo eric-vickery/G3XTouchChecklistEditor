@@ -19,12 +19,12 @@ struct G3XTouchChecklistEditorApp: App {
         }
         .windowResizability(.contentSize)
         
-#if os(macOS)
-        Settings
-        {
-            GeneralSettings()
-        }
-#endif
+//#if os(macOS)
+//        Settings
+//        {
+//            GeneralSettings()
+//        }
+//#endif
     }
 }
 
@@ -38,15 +38,15 @@ extension Scene {
     }
 }
 
-struct GeneralSettings: View
-{
-    var body: some View
-    {
-        VStack {
-            Text("Hello world")
-                .padding()
-        }
-        .padding()
-        .fixedSize()
-    }
-}
+//struct GeneralSettings: View
+//{
+//    var body: some View
+//    {
+//        VStack {
+//            Text("Hello world")
+//                .padding()
+//        }
+//        .padding()
+//        .fixedSize()
+//    }
+//}

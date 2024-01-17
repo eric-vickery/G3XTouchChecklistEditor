@@ -54,7 +54,7 @@ class Checklist: ObservableObject, Identifiable
         {
             return nil
         }
-        guard let entries = Entry.parseEntries(&data) else
+        guard let entries = Entry.parseEntries(&data, parent: self) else
         {
             return nil
         }
@@ -147,6 +147,15 @@ class Checklist: ObservableObject, Identifiable
     func moveEntries(fromOffsets: IndexSet, toOffset: Int)
     {
         entries.move(fromOffsets: fromOffsets, toOffset: toOffset)
+        // Only undo if we moved one entry
+//        if fromOffsets.count == 1
+//        {
+//            undoManager?.registerUndo(withTarget: self)
+//            { checklist in
+//                checklist.undoManager?.setActionName("Move Checklist Entry")
+//                checklist.moveEntries(fromOffsets: IndexSet(integer: toOffset), toOffset: fromOffsets.first!)
+//            }
+//        }
     }
     
     func removeEntries(atOffsets: IndexSet)

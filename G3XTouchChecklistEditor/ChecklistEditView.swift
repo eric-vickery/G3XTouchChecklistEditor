@@ -1,14 +1,14 @@
 //
-//  GroupEditView.swift
+//  ChecklistEditView.swift
 //  G3X Touch Checklist Editor
 //
-//  Created by Eric Vickery on 1/15/24.
+//  Created by Eric Vickery on 1/17/24.
 //
 
 import SwiftUI
 
-struct GroupEditView: View {
-    @ObservedObject var group: Group
+struct ChecklistEditView: View {
+    @ObservedObject var checklist: Checklist
     @Environment(\.undoManager) var undoManager
     @Environment(\.dismiss) var dismiss
     
@@ -18,7 +18,7 @@ struct GroupEditView: View {
         {
             Form
             {
-                TextField("Name", text: $group.name)
+                TextField("Name", text: $checklist.name)
                 Spacer()
                 Button("Done")
                 {
@@ -31,5 +31,5 @@ struct GroupEditView: View {
 }
 
 //#Preview {
-//    GroupEditView()
+//    ChecklistEditView()
 //}

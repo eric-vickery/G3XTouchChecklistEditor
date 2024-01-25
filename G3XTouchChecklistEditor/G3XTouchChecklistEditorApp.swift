@@ -12,12 +12,14 @@ struct G3XTouchChecklistEditorApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: ChecklistFile())
         { file in
-            ContentView(document: file.document)
+            MainView(document: file.document)
 #if os(macOS)
                 .frame(minWidth: 800, idealWidth: 1024, maxWidth: .infinity, minHeight: 800, idealHeight: 1000, maxHeight: .infinity)
 #endif
         }
+#if os(macOS)
         .windowResizability(.contentSize)
+#endif
         
 //#if os(macOS)
 //        Settings
@@ -30,7 +32,7 @@ struct G3XTouchChecklistEditorApp: App {
 
 extension Scene {
     func windowResizabilityContentSize() -> some Scene {
-        if #available(macOS 13.0, *) {
+        if #available(macOS 13.0, iOS 17.0, *) {
             return windowResizability(.contentSize)
         } else {
             return self

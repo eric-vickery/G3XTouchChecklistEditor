@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		ABA3F8B02B55F11A006F5355 /* GroupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */; };
+		ABA3F8B22B58DD11006F5355 /* ChecklistEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */; };
+		ABA3F8B42B5B2E52006F5355 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */; };
 		ABA78DD82B4286A200BD13A2 /* ChecklistPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DD72B4286A200BD13A2 /* ChecklistPropertiesView.swift */; };
 		ABA78DDA2B4286E900BD13A2 /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DD92B4286E900BD13A2 /* EntryView.swift */; };
 		ABA78DDC2B43AD3700BD13A2 /* ChecklistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DDB2B43AD3700BD13A2 /* ChecklistsView.swift */; };
@@ -19,7 +21,7 @@
 		ABA78DEA2B44F46200BD13A2 /* GroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DE92B44F46200BD13A2 /* GroupsView.swift */; };
 		ABA78DED2B4639BD00BD13A2 /* EntryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA78DEC2B4639BD00BD13A2 /* EntryEditView.swift */; };
 		ABE1C2B12B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2B02B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift */; };
-		ABE1C2B32B3FAF7700BD40E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2B22B3FAF7700BD40E4 /* ContentView.swift */; };
+		ABE1C2B32B3FAF7700BD40E4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2B22B3FAF7700BD40E4 /* MainView.swift */; };
 		ABE1C2B52B3FAF7800BD40E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE1C2B42B3FAF7800BD40E4 /* Assets.xcassets */; };
 		ABE1C2B92B3FAF7800BD40E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABE1C2B82B3FAF7800BD40E4 /* Preview Assets.xcassets */; };
 		ABE1C2C32B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2C22B3FAF7800BD40E4 /* G3XTouchChecklistEditorTests.swift */; };
@@ -48,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditView.swift; sourceTree = "<group>"; };
+		ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistEditView.swift; sourceTree = "<group>"; };
+		ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		ABA78DD72B4286A200BD13A2 /* ChecklistPropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistPropertiesView.swift; sourceTree = "<group>"; };
 		ABA78DD92B4286E900BD13A2 /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		ABA78DDB2B43AD3700BD13A2 /* ChecklistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistsView.swift; sourceTree = "<group>"; };
@@ -61,7 +65,7 @@
 		ABA78DEC2B4639BD00BD13A2 /* EntryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditView.swift; sourceTree = "<group>"; };
 		ABE1C2AD2B3FAF7700BD40E4 /* G3X Touch Checklist Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "G3X Touch Checklist Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABE1C2B02B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G3XTouchChecklistEditorApp.swift; sourceTree = "<group>"; };
-		ABE1C2B22B3FAF7700BD40E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		ABE1C2B22B3FAF7700BD40E4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		ABE1C2B42B3FAF7800BD40E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = G3XTouchChecklistEditor/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		ABE1C2B62B3FAF7800BD40E4 /* G3XTouchChecklistEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = G3XTouchChecklistEditor.entitlements; sourceTree = "<group>"; };
 		ABE1C2B82B3FAF7800BD40E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -126,7 +130,7 @@
 			children = (
 				ABE1C2E62B408E9800BD40E4 /* Models */,
 				ABE1C2B02B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift */,
-				ABE1C2B22B3FAF7700BD40E4 /* ContentView.swift */,
+				ABE1C2B22B3FAF7700BD40E4 /* MainView.swift */,
 				ABA78DE92B44F46200BD13A2 /* GroupsView.swift */,
 				ABA78DD72B4286A200BD13A2 /* ChecklistPropertiesView.swift */,
 				ABA78DDB2B43AD3700BD13A2 /* ChecklistsView.swift */,
@@ -135,6 +139,8 @@
 				ABA78DD92B4286E900BD13A2 /* EntryView.swift */,
 				ABA78DEC2B4639BD00BD13A2 /* EntryEditView.swift */,
 				ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */,
+				ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */,
+				ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */,
 				ABE1C2B42B3FAF7800BD40E4 /* Assets.xcassets */,
 				ABE1C2B62B3FAF7800BD40E4 /* G3XTouchChecklistEditor.entitlements */,
 				ABE1C2B72B3FAF7800BD40E4 /* Preview Content */,
@@ -315,7 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABE1C2B32B3FAF7700BD40E4 /* ContentView.swift in Sources */,
+				ABE1C2B32B3FAF7700BD40E4 /* MainView.swift in Sources */,
 				ABE1C2B12B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift in Sources */,
 				ABA78DDA2B4286E900BD13A2 /* EntryView.swift in Sources */,
 				ABA78DE22B44747500BD13A2 /* Group.swift in Sources */,
@@ -327,7 +333,9 @@
 				ABA78DD82B4286A200BD13A2 /* ChecklistPropertiesView.swift in Sources */,
 				ABA78DE62B44E82700BD13A2 /* PropertyExtension.swift in Sources */,
 				ABA78DE42B4474B900BD13A2 /* Entry.swift in Sources */,
+				ABA3F8B42B5B2E52006F5355 /* TutorialView.swift in Sources */,
 				ABA78DE02B44740D00BD13A2 /* ChecklistFile.swift in Sources */,
+				ABA3F8B22B58DD11006F5355 /* ChecklistEditView.swift in Sources */,
 				ABE1C2E82B408ED200BD40E4 /* Checklist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +502,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "G3X-Touch-Checklist-Editor-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "G3X Touch Checklist Editor";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -506,12 +515,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.serenitymountainranch.G3XTouchChecklistEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -537,6 +546,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "G3X-Touch-Checklist-Editor-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "G3X Touch Checklist Editor";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -549,12 +559,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.vickeryranch.G3XTouchChecklistEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = com.serenitymountainranch.G3XTouchChecklistEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

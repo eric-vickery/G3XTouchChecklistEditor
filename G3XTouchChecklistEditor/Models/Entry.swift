@@ -43,6 +43,22 @@ enum EntryType: String, CaseIterable, Identifiable, CustomStringConvertible
     }
 }
 
+enum SampleEntryType: Int, CaseIterable
+{
+    case none = 0
+    case textLeft
+    case textOne
+    case textTwo
+    case textThree
+    case textFour
+    case textCenter
+    case noteBlankLines
+    case subtitle
+    case warning
+    case caution
+    case challenge
+}
+
 enum Justification: String, CaseIterable, Identifiable, CustomStringConvertible
 {
     var id: Self {
@@ -76,13 +92,82 @@ class Entry: ObservableObject, Identifiable, Transferable
     
     var undoManager: UndoManager?
     @Published var id = UUID()
-    @Published var parent: Checklist? = nil
     @Published var type:EntryType = .undefined
+    {
+        didSet
+        {
+            if oldValue != type
+            {
+                undoManager?.setActionName("Change Type")
+                undoManager?.registerUndo(withTarget: self)
+                { entry in
+                    entry.undoManager?.setActionName("Change Type")
+                    entry.type = oldValue
+                }
+            }
+        }
+    }
     @Published var justification:Justification = .left
+    {
+        didSet
+        {
+            if oldValue != justification
+            {
+                undoManager?.setActionName("Change Justification")
+                undoManager?.registerUndo(withTarget: self)
+                { entry in
+                    entry.undoManager?.setActionName("Change Justification")
+                    entry.justification = oldValue
+                }
+            }
+        }
+    }
     @Published var numBlankLinesFollowing:Int = 0
+    {
+        didSet
+        {
+            if oldValue != numBlankLinesFollowing
+            {
+                undoManager?.setActionName("Change Lines")
+                undoManager?.registerUndo(withTarget: self)
+                { entry in
+                    entry.undoManager?.setActionName("Change Lines")
+                    entry.numBlankLinesFollowing = oldValue
+                }
+            }
+        }
+    }
     @Published var text = ""
+    {
+        didSet
+        {
+            if oldValue != text
+            {
+                undoManager?.setActionName("Change Text")
+                undoManager?.registerUndo(withTarget: self)
+                { entry in
+                    entry.undoManager?.setActionName("Change Text")
+                    entry.text = oldValue
+                }
+            }
+        }
+    }
     @Published var response = ""
-    
+    {
+        didSet
+        {
+            if oldValue != response
+            {
+                undoManager?.setActionName("Change Response")
+                undoManager?.registerUndo(withTarget: self)
+                { entry in
+                    entry.undoManager?.setActionName("Change Response")
+                    entry.response = oldValue
+                }
+            }
+        }
+    }
+
     static var transferRepresentation: some TransferRepresentation
     {
         DataRepresentation(contentType: .checklistEntry)
@@ -93,7 +178,7 @@ class Entry: ObservableObject, Identifiable, Transferable
     importing:
         { data in
             var myData = data
-            guard let entry = Entry(&myData, parent: nil) else
+            guard let entry = Entry(&myData) else
             {
                 throw "Could not decode transferrable"
             }
@@ -101,14 +186,14 @@ class Entry: ObservableObject, Identifiable, Transferable
         }
     }
     
-    static func parseEntries(_ data: inout Data, parent: Checklist?) -> [Entry]?
+    static func parseEntries(_ data: inout Data) -> [Entry]?
     {
         var entryArray:[Entry]?
         var couldBeMoreEntries = true
         
         repeat
         {
-            if let entry = Entry(&data, parent: parent)
+            if let entry = Entry(&data)
             {
                 entryArray == nil ? entryArray = [entry] : entryArray!.append(entry)
             }
@@ -122,10 +207,8 @@ class Entry: ObservableObject, Identifiable, Transferable
                 return entryArray
     }
     
-    init?(_ data: inout Data, parent: Checklist?)
+    init?(_ data: inout Data)
     {
-        self.parent = parent
-        
         if !parseHeader(&data)
         {
             return nil
@@ -138,11 +221,61 @@ class Entry: ObservableObject, Identifiable, Transferable
         self.numBlankLinesFollowing = checkForBlankLines(&data)
     }
     
-    init()
+    init(_ sampleEntryType: SampleEntryType = .none)
     {
-        type = .undefined
-        justification = .left
-        text = "New Item"
+        switch sampleEntryType
+        {
+        case .none:
+            type = .undefined
+            justification = .left
+            text = "New Item"
+        case .textLeft:
+            type = .text
+            justification = .left
+            text = "Plain Text Left Justified"
+        case .textOne:
+            type = .text
+            justification = .one
+            text = "Plain Text Indented 1 Level"
+        case .textTwo:
+            type = .text
+            justification = .two
+            text = "Plain Text Indented 2 Levels"
+        case .textThree:
+            type = .text
+            justification = .three
+            text = "Plain Text Indented 3 Levels"
+        case .textFour:
+            type = .text
+            justification = .four
+            text = "Plain Text Indented 4 Levels"
+        case .textCenter:
+            type = .text
+            justification = .center
+            text = "Plain Text Center Justified"
+        case .noteBlankLines:
+            type = .note
+            justification = .left
+            numBlankLinesFollowing = 5
+            text = "Note with 5 blank lines"
+        case .subtitle:
+            type = .subtitle
+            justification = .left
+            text = "Subtitle Type"
+        case .warning:
+            type = .warning
+            justification = .center
+            text = "This is a Warning Center Justified"
+        case .caution:
+            type = .caution
+            justification = .left
+            text = "This is a Caution"
+        case .challenge:
+            type = .challenge
+            justification = .left
+            text = "Challenge"
+            response = "Response"
+        }
     }
     
     func exportData(_ data: inout Data) -> Data
@@ -257,6 +390,18 @@ class Entry: ObservableObject, Identifiable, Transferable
             }
             return false
         }
+    }
+    
+    func duplicate() -> Entry
+    {
+        let newEntry = Entry()
+        newEntry.text = self.text
+        newEntry.type = self.type
+        newEntry.justification = self.justification
+        newEntry.response = self.response
+        newEntry.numBlankLinesFollowing = self.numBlankLinesFollowing
+        
+        return newEntry
     }
 }
 

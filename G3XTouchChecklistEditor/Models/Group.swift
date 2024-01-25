@@ -14,7 +14,6 @@ extension UTType
     static let checklistGroup = UTType(exportedAs: "com.garmin.g3x.checklist.group")
 }
 
-
 class Group: ObservableObject, Identifiable, Transferable, Equatable
 {
     static let header = "<0"
@@ -23,7 +22,22 @@ class Group: ObservableObject, Identifiable, Transferable, Equatable
     var undoManager: UndoManager?
     @Published var id = UUID()
     @Published var name = ""
+    {
+        didSet
+        {
+            if oldValue != name
+            {
+                undoManager?.setActionName("Change Name")
+                undoManager?.registerUndo(withTarget: self)
+                { group in
+                    group.undoManager?.setActionName("Change Name")
+                    group.name = oldValue
+                }
+            }
+        }
+    }
     @Published var checklists:[Checklist] = []
+    @Published var isDefault = false
     // Don't like this UI data here but these will stay here until I come up with a better way
     @Published var isExpanded = false
 
@@ -93,10 +107,18 @@ class Group: ObservableObject, Identifiable, Transferable, Equatable
         }
     }
     
-    init()
+    init(_ sampleGroup: Bool = false)
     {
-        name = "New Group"
-        checklists = [Checklist()]
+        if sampleGroup
+        {
+            name = "Sample Group"
+            checklists = [Checklist(true)]
+        }
+        else
+        {
+            name = "New Group"
+            checklists = [Checklist()]
+        }
     }
     
     func exportData(_ data: inout Data) -> Data
@@ -173,6 +195,172 @@ class Group: ObservableObject, Identifiable, Transferable, Equatable
         return false
     }
     
+    func moveChecklists(fromOffsets: IndexSet, toOffset: Int)
+    {
+        checklists.move(fromOffsets: fromOffsets, toOffset: toOffset)
+        // Only undo if we moved one checklist
+        if fromOffsets.count == 1
+        {
+            undoManager?.setActionName("Move Checklist")
+            undoManager?.registerUndo(withTarget: self)
+            { group in
+                group.undoManager?.setActionName("Move Checklist")
+                let fromIndex = fromOffsets.first!
+                group.moveChecklists(fromOffsets: IndexSet(integer: (toOffset > fromIndex ? toOffset - 1 : toOffset)), toOffset: (fromIndex > toOffset ? (fromIndex + 1) : fromIndex))
+            }
+        }
+    }
+    
+    func removeChecklists(atOffsets: IndexSet)
+    {
+        checklists.remove(atOffsets: atOffsets)
+    }
+    
+    func removeChecklists(inSet: Set<UUID>)
+    {
+        let removedChecklists: [Checklist] = checklists.filter( { inSet.contains($0.id) })
+        checklists.removeAll { inSet.contains($0.id) }
+
+        undoManager?.setActionName("Remove Checklists")
+        undoManager?.registerUndo(withTarget: self)
+        { group in
+            group.undoManager?.setActionName("Remove Checklists")
+            group.addChecklists(contentsOf: removedChecklists)
+        }
+    }
+    
+    func removeChecklists(contentsOf: [Checklist])
+    {
+        checklists.removeAll(where: { checklist in
+            contentsOf.contains(where: {checklistToRemove in
+                checklistToRemove.id == checklist.id
+            })
+        })
+        undoManager?.setActionName("Remove Checklists")
+        undoManager?.registerUndo(withTarget: self)
+        { group in
+            group.undoManager?.setActionName("Remove Checklists")
+            group.addChecklists(contentsOf: contentsOf)
+        }
+    }
+    
+    func removeChecklist(_ checklist: Checklist)
+    {
+        checklists.removeAll(where: { $0.id == checklist.id })
+
+        undoManager?.setActionName("Remove Checklist")
+        undoManager?.registerUndo(withTarget: self)
+        { group in
+            group.undoManager?.setActionName("Remove Checklist")
+            group.addChecklist(checklist)
+        }
+    }
+    
+    func addChecklists(contentsOf: [Checklist])
+    {
+        checklists.append(contentsOf: contentsOf)
+
+        undoManager?.setActionName("Add Checklists")
+        undoManager?.registerUndo(withTarget: self)
+        { group in
+            group.undoManager?.setActionName("Add Checklists")
+            group.removeChecklists(contentsOf: contentsOf)
+        }
+    }
+    
+    func addChecklist(_ checklist: Checklist)
+    {
+        checklists.append(checklist)
+
+        undoManager?.setActionName("Add Checklist")
+        undoManager?.registerUndo(withTarget: self)
+        { group in
+            group.undoManager?.setActionName("Add Checklist")
+            group.removeChecklist(checklist)
+        }
+    }
+    
+    func addChecklist(_ checklist: Checklist, after: UUID?)
+    {
+        guard let after else
+        {
+            return
+        }
+        if let itemIndex = checklists.firstIndex(where: { $0.id == after })
+        {
+            checklists.insert(checklist, at: itemIndex + 1)
+
+            undoManager?.setActionName("Add Checklist")
+            undoManager?.registerUndo(withTarget: self)
+            { group in
+                group.undoManager?.setActionName("Add Checklist")
+                group.removeChecklist(checklist)
+            }
+        }
+    }
+    
+    func duplicateChecklist(_ id: UUID?)
+    {
+        if let id, let checklistToDuplicate = getChecklist(id)
+        {
+            let duplicate = checklistToDuplicate.duplicate()
+            addChecklist(duplicate, after: id)
+        }
+    }
+    
+    func getChecklist(_ id: UUID) -> Checklist?
+    {
+        return checklists.first(where: { $0.id == id })
+    }
+    
+    func setDefaultChecklist(_ id: UUID)
+    {
+        for checklist in checklists
+        {
+            if checklist.id == id
+            {
+                checklist.isDefault = true
+            }
+            else
+            {
+                checklist.isDefault = false
+            }
+        }
+        self.objectWillChange.send()
+    }
+    
+    func setDefaultChecklist(byIndex: Int)
+    {
+        if byIndex < checklists.count - 1
+        {
+            checklists[byIndex].isDefault = true
+            
+            self.objectWillChange.send()
+        }
+    }
+    
+    func duplicate() -> Group
+    {
+        let newGroup = Group()
+        newGroup.name = self.name + " - Copy"
+        newGroup.checklists = self.checklists.map({ $0.duplicate() })
+        
+        return newGroup
+    }
+
+    func getDefaultChecklistIndex() -> Int
+    {
+        if let index = checklists.firstIndex(where: { $0.isDefault })
+        {
+            return index
+        }
+        return 0
+    }
+    
+    func getDefaultChecklist() -> Checklist?
+    {
+        return checklists.first(where: { $0.isDefault })
+    }
 }
 
 

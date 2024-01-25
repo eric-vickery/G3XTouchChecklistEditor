@@ -15,7 +15,9 @@ struct ChecklistView: View
     @Environment(\.defaultMinListRowHeight) var minRowHeight
     @Environment(\.undoManager) var undoManager
     @State private var selection = Set<UUID>()
-    
+    @State var showChecklistEditSheet = false
+    @State var selectedChecklist: Checklist = Checklist()
+
     var body: some View
     {
         checklist.undoManager = undoManager
@@ -49,9 +51,6 @@ struct ChecklistView: View
             {
                 EntryEditView(entry: selectedEntry)
             }
-#if os(iOS)
-            .environment(\.editMode, $checklist.editMode)
-#endif
             .scrollContentBackground(.hidden)
             .background(Color.black)
             .border(.gray)
@@ -70,23 +69,110 @@ struct ChecklistView: View
             })
 #endif
             .contextMenu(forSelectionType: Entry.ID.self) { items in
+#if os(iOS)
+                if let undoManager
+                {
+                    Button()
+                    {
+                        withAnimation()
+                        {
+                            undoManager.undo()
+                        }
+                    }
+                label:
+                    {
+                        Label("Undo \(undoManager.undoActionName)", systemImage: "arrow.uturn.backward.square")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .disabled(!undoManager.canUndo)
+                    
+                    Button()
+                    {
+                        withAnimation()
+                        {
+                            undoManager.redo()
+                        }
+                    }
+                label:
+                    {
+                        Label("Redo \(undoManager.redoActionName)", systemImage: "arrow.uturn.forward.square")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    .disabled(!undoManager.canRedo)
+                }
+#endif
                 if items.isEmpty { // Empty area menu.
-                     Button("New Item") { checklist.addEntry(Entry()) }
-
+                    Button()
+                    {
+                        checklist.addEntry(Entry())
+                    }
+                label:
+                    {
+                        Label("Add Item", systemImage: "plus")
+                            .labelStyle(.titleAndIcon)
+                    }
                  } else if items.count == 1 { // Single item menu.
-                     Button("Edit") {
+                     Button()
+                     {
                          if let foundSelectedEntry = checklist.getEntry(items.first!)
                          {
                              selectedEntry = foundSelectedEntry
                              showEntryEditSheet.toggle()
                          }
                      }
-                     Button("Copy") { }
-                     Button("Delete", role: .destructive) { deleteSelection() }
-
+                 label:
+                     {
+                         Label("Edit", systemImage: "pencil")
+                             .labelStyle(.titleAndIcon)
+                     }
+                     Button()
+                     {
+                         checklist.duplicateEntry(items.first)
+                     }
+                 label:
+                     {
+                         Label("Duplicate", systemImage: "plus.square.on.square")
+                             .labelStyle(.titleAndIcon)
+                     }
+                     Button(role: .destructive)
+                     {
+                         selection = Set(items)
+                         deleteSelection()
+                     }
+                 label:
+                     {
+                         Label("Delete", systemImage: "trash")
+                             .labelStyle(.titleAndIcon)
+                     }
+                     Divider()
+                     Button()
+                     {
+                         checklist.addEntry(Entry(), after: items.first)
+                     }
+                 label:
+                     {
+                         Label("Add Item", systemImage: "plus")
+                             .labelStyle(.titleAndIcon)
+                     }
                  } else { // Multi-item menu.
-                     Button("Copy") { }
-                     Button("Delete Selected", role: .destructive) { deleteSelection() }
+                     Button()
+                     {
+                         checklist.duplicateEntries(items)
+                     }
+                 label:
+                     {
+                         Label("Duplicate", systemImage: "plus.square.on.square")
+                             .labelStyle(.titleAndIcon)
+                     }
+                     Button(role: .destructive)
+                     {
+                         deleteSelection()
+                     }
+                 label:
+                     {
+                         Label("Delete Selected", systemImage: "trash")
+                             .labelStyle(.titleAndIcon)
+                     }
                  }
             } primaryAction: { items in
                 if items.count == 1
@@ -104,43 +190,22 @@ struct ChecklistView: View
             HStack
             {
                 Label(checklist.name, systemImage: "checklist")
-                    .onTapGesture(count: 2)
-                    {
-                        showEntryEditSheet.toggle()
-                    }
-                    .onTapGesture
-                    {
-                        withAnimation()
-                        {
-                            checklist.isExpanded.toggle()
-                        }
-                    }
-                Spacer()
-                if checklist.isExpanded
+                .onTapGesture(count: 2)
                 {
-                    Button()
+                    showChecklistEditSheet.toggle()
+                }
+                .onTapGesture
+                {
+                    withAnimation()
                     {
-                        checklist.addEntry(Entry())
-                    }
-                label:
-                    {
-                        Image(systemName: "plus")
+                        checklist.isExpanded.toggle()
                     }
                 }
-#if os(iOS)
-                if checklist.isExpanded
-                {
-                    Button()
-                    {
-                        checklist.editMode = checklist.editMode == .active ? .inactive : .active
-                    }
-                label:
-                    {
-                        Text(checklist.editMode == .inactive ? "Edit" : "Done")
-                    }
-                }
-#endif
             }
+        }
+        .sheet(isPresented: $showChecklistEditSheet)
+        {
+            ChecklistEditView(checklist: checklist)
         }
 #if os(macOS)
         .onTapGesture {

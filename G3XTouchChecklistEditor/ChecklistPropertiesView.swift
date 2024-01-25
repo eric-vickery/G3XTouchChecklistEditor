@@ -62,11 +62,42 @@ struct ChecklistPropertiesView: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .border(.secondary)
                 }
+                HStack(spacing: 20)
+                {
+                    Text("Default Group")
+                        .font(.headline)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                    Text(document.getDefaultGroupName())
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                }
+                HStack(spacing: 20)
+                {
+                    Text("Default Checklist")
+                        .font(.headline)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+                    Text(document.getDefaultChecklistName())
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                }
             }
         }
     label:
         {
-            Label("Checklist Properties", systemImage: "filemenu.and.cursorarrow")
+            HStack
+            {
+                Label("Checklist File Properties", systemImage: "filemenu.and.cursorarrow")
+            }
+        }
+        .contextMenu()
+        {
+            Button ()
+            {
+                document.addGroup(Group())
+            }
+        label:
+            {
+                Label("Add Group", systemImage: "plus.app")
+                    .labelStyle(.titleAndIcon)
+            }
         }
 #if os(macOS)
         .onTapGesture {

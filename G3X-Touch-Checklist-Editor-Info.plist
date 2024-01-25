@@ -14,10 +14,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
-			<string>Default</string>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.garmin.g3x.checklist</string>
+				<string>com.garmin.g3x.checklistfile</string>
 			</array>
 		</dict>
 	</array>
@@ -40,7 +40,7 @@
 				<string>File_Icon</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>com.garmin.g3x.checklist</string>
+			<string>com.garmin.g3x.checklistfile</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
@@ -74,6 +74,20 @@
 			<dict/>
 			<key>UTTypeIdentifier</key>
 			<string>com.garmin.g3x.checklist.group</string>
+			<key>UTTypeTagSpecification</key>
+			<dict/>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>G3X Touch Checklist</string>
+			<key>UTTypeIcons</key>
+			<dict/>
+			<key>UTTypeIdentifier</key>
+			<string>com.garmin.g3x.checklist</string>
 			<key>UTTypeTagSpecification</key>
 			<dict/>
 		</dict>

@@ -22,6 +22,9 @@ struct EntryEditView: View
                     Text(type.description)
                 }
             }
+            TextField("Text", text: $entry.text)
+            TextField("Response", text: $entry.response)
+                .disabled(entry.type != .challenge)
             Picker("Justification", selection: $entry.justification) {
                 ForEach(Justification.allCases) { justification in
                     if !(entry.type == .challenge && justification == .center)
@@ -30,9 +33,6 @@ struct EntryEditView: View
                     }
                 }
             }
-            TextField("Text", text: $entry.text)
-            TextField("Response", text: $entry.response)
-                .disabled(entry.type != .challenge)
             Stepper("\(entry.numBlankLinesFollowing) blank lines after", value: $entry.numBlankLinesFollowing, in: 0...5)
             Spacer()
             Button("Done")

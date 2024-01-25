@@ -43,7 +43,7 @@ extension UInt32
 
 extension UTType
 {
-    static let checklistDocument = UTType(exportedAs: "com.garmin.g3x.checklist")
+    static let checklistDocument = UTType(exportedAs: "com.garmin.g3x.checklistfile")
 }
 
 class ChecklistFile: FileDocument, ObservableObject, Identifiable
@@ -56,15 +56,85 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
     var undoManager: UndoManager?
     @Published var id = UUID()
     @Published var name = ""
+    {
+        didSet
+        {
+            if oldValue != name
+            {
+                undoManager?.setActionName("Change Name")
+                undoManager?.registerUndo(withTarget: self)
+                { checklistFile in
+                    checklistFile.undoManager?.setActionName("Change Name")
+                    checklistFile.name = oldValue
+                }
+            }
+        }
+    }
     @Published var makeAndModel = ""
+    {
+        didSet
+        {
+            if oldValue != makeAndModel
+            {
+                undoManager?.setActionName("Change Make")
+                undoManager?.registerUndo(withTarget: self)
+                { checklistFile in
+                    checklistFile.undoManager?.setActionName("Change Make")
+                    checklistFile.makeAndModel = oldValue
+                }
+            }
+        }
+    }
     @Published var aircraftInfo = ""
+    {
+        didSet
+        {
+            if oldValue != aircraftInfo
+            {
+                undoManager?.setActionName("Change Info")
+                undoManager?.registerUndo(withTarget: self)
+                { checklistFile in
+                    checklistFile.undoManager?.setActionName("Change Info")
+                    checklistFile.aircraftInfo = oldValue
+                }
+            }
+        }
+    }
     @Published var manufacturerID = ""
+    {
+        didSet
+        {
+            if oldValue != manufacturerID
+            {
+                undoManager?.setActionName("Change Manufacturer")
+                undoManager?.registerUndo(withTarget: self)
+                { checklistFile in
+                    checklistFile.undoManager?.setActionName("Change Manufacturer")
+                    checklistFile.manufacturerID = oldValue
+                }
+            }
+        }
+    }
     @Published var copyright = ""
+    {
+        didSet
+        {
+            if oldValue != copyright
+            {
+                undoManager?.setActionName("Change Copyright")
+                undoManager?.registerUndo(withTarget: self)
+                { checklistFile in
+                    checklistFile.undoManager?.setActionName("Change Copyright")
+                    checklistFile.copyright = oldValue
+                }
+            }
+        }
+    }
     var magicHeader1:[UInt8] = [0xF0, 0xF0, 0xF0, 0xF0]
-    var magicHeader2:[UInt8] = [0x00, 0x01, 0x00, 0x00]
+    var magicHeader2:[UInt8] = [0x00, 0x01]
     @Published var groups:[Group] = []
-    @Published var defaultGroup:UInt8 = 0
-    @Published var defaultChecklist:UInt8 = 0
+    var defaultGroupIndex:Int = 0
+    var defaultChecklistIndex:Int = 0
     // Don't like this UI data here but these will stay here until I come up with a better way
     @Published var isExpanded = false
 #if os(iOS)
@@ -128,6 +198,8 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
             throw CocoaError(.fileReadCorruptFile)
         }
         self.groups = groups
+        setDefaultGroup(byIndex: defaultGroupIndex)
+        setDefaultChecklist(byIndex: defaultChecklistIndex)
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper
@@ -144,7 +216,9 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
         aircraftInfo = "Some Data"
         manufacturerID = "Manufacturer"
         copyright = "2024"
-        groups = [Group()]
+        groups = [Group]()
+        groups.append(Group(true))
+        groups.append(Group())
     }
     
     init?(_ data: inout Data)
@@ -182,15 +256,22 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
             return nil
         }
         self.groups = groups
+        setDefaultGroup(byIndex: defaultGroupIndex)
+        setDefaultChecklist(byIndex: defaultChecklistIndex)
     }
     
     func exportData() throws -> Data
     {
+        defaultGroupIndex = getDefaultGroupIndex()
+        defaultChecklistIndex = getDefaultChecklistIndex()
+        
         var data = Data()
         
         data.append(contentsOf: magicHeader1)
         // TODO Need to get the default group and checklist in here
         data.append(contentsOf: magicHeader2)
+        data.append(UInt8(defaultGroupIndex))
+        data.append(UInt8(defaultChecklistIndex))
         data.append(contentsOf: ChecklistFile.separator)
         data.append(contentsOf: name.data(using: .ascii)!)
         data.append(contentsOf: ChecklistFile.separator)
@@ -204,7 +285,7 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
         data.append(contentsOf: ChecklistFile.separator)
         for group in groups
         {
-            group.exportData(&data)
+            _ = group.exportData(&data)
         }
         data.append(contentsOf: ChecklistFile.footer.data(using: .ascii)!)
         data.append(contentsOf: ChecklistFile.separator)
@@ -233,8 +314,8 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
         let byte5 = data.popFirst()
         let byte6 = data.popFirst()
         
-        defaultGroup = byte3!
-        defaultChecklist = byte4!
+        defaultGroupIndex = Int(byte3!)
+        defaultChecklistIndex = Int(byte4!)
         
         return byte1 == 0x00 && byte2 == 0x01 && byte5 == 0x0D && byte6 == 0x0A
     }
@@ -310,15 +391,17 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
     func moveGroups(fromOffsets: IndexSet, toOffset: Int)
     {
         groups.move(fromOffsets: fromOffsets, toOffset: toOffset)
-        // Only undo if we moved one entry
-//        if fromOffsets.count == 1
-//        {
-//            undoManager?.registerUndo(withTarget: self)
-//            { checklist in
-//                checklist.undoManager?.setActionName("Move Checklist Entry")
-//                checklist.moveEntries(fromOffsets: IndexSet(integer: toOffset), toOffset: fromOffsets.first!)
-//            }
-//        }
+        // Only undo if we moved one group
+        if fromOffsets.count == 1
+        {
+            undoManager?.setActionName("Move Group")
+            undoManager?.registerUndo(withTarget: self)
+            { checklistFile in
+                checklistFile.undoManager?.setActionName("Move Group")
+                let fromIndex = fromOffsets.first!
+                checklistFile.moveGroups(fromOffsets: IndexSet(integer: (toOffset > fromIndex ? toOffset - 1 : toOffset)), toOffset: (fromIndex > toOffset ? (fromIndex + 1) : fromIndex))
+            }
+        }
     }
     
     func removeGroups(atOffsets: IndexSet)
@@ -330,6 +413,8 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
     {
         let removedGroups: [Group] = groups.filter( { inSet.contains($0.id) })
         groups.removeAll { inSet.contains($0.id) }
+
+        undoManager?.setActionName("Remove Groups")
         undoManager?.registerUndo(withTarget: self)
         { checklistFile in
             checklistFile.undoManager?.setActionName("Remove Groups")
@@ -344,6 +429,8 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
                 groupToRemove.id == group.id
             })
         })
+
+        undoManager?.setActionName("Remove Groups")
         undoManager?.registerUndo(withTarget: self)
         { checklistFile in
             checklistFile.undoManager?.setActionName("Remove Groups")
@@ -354,6 +441,8 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
     func removeGroup(_ group: Group)
     {
         groups.removeAll(where: { $0.id == group.id })
+
+        undoManager?.setActionName("Remove Group")
         undoManager?.registerUndo(withTarget: self)
         { checklistFile in
             checklistFile.undoManager?.setActionName("Remove Group")
@@ -364,6 +453,8 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
     func addGroups(contentsOf: [Group])
     {
         groups.append(contentsOf: contentsOf)
+
+        undoManager?.setActionName("Add Groups")
         undoManager?.registerUndo(withTarget: self)
         { checklistFile in
             checklistFile.undoManager?.setActionName("Add Groups")
@@ -374,6 +465,8 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
     func addGroup(_ group: Group)
     {
         groups.append(group)
+
+        undoManager?.setActionName("Add Group")
         undoManager?.registerUndo(withTarget: self)
         { checklistFile in
             checklistFile.undoManager?.setActionName("Add Group")
@@ -381,9 +474,121 @@ class ChecklistFile: FileDocument, ObservableObject, Identifiable
         }
     }
     
+    func addGroup(_ group: Group, after: UUID?)
+    {
+        guard let after else
+        {
+            return
+        }
+        if let itemIndex = groups.firstIndex(where: { $0.id == after })
+        {
+            groups.insert(group, at: itemIndex + 1)
+
+            undoManager?.setActionName("Add Group")
+            undoManager?.registerUndo(withTarget: self)
+            { checklistFile in
+                checklistFile.undoManager?.setActionName("Add Group")
+                checklistFile.removeGroup(group)
+            }
+        }
+    }
+    
+    func duplicateGroup(_ id: UUID?)
+    {
+        if let id, let groupToDuplicate = getGroup(id)
+        {
+            let duplicate = groupToDuplicate.duplicate()
+            addGroup(duplicate, after: id)
+        }
+    }
+    
+    func setDefaultGroup(_ id: UUID)
+    {
+        for group in groups 
+        {
+            if group.id == id
+            {
+                group.isDefault = true
+            }
+            else
+            {
+                group.isDefault = false
+            }
+        }
+        self.objectWillChange.send()
+    }
+    
+    func setDefaultGroup(byIndex: Int)
+    {
+        if byIndex < groups.count - 1
+        {
+            groups[byIndex].isDefault = true
+            
+            self.objectWillChange.send()
+        }
+    }
+    
+    func setDefaultChecklist(byIndex: Int)
+    {
+        if let group = getDefaultGroup()
+        {
+            group.setDefaultChecklist(byIndex: byIndex)
+            self.objectWillChange.send()
+        }
+    }
+    
     func getGroup(_ id: UUID) -> Group?
     {
         return groups.first(where: { $0.id == id })
     }
+    
+    func getDefaultGroupIndex() -> Int
+    {
+        if let index = groups.firstIndex(where: { $0.isDefault })
+        {
+            return index
+        }
+        return 0
+    }
+    
+    func getDefaultGroup() -> Group?
+    {
+        return groups.first(where: { $0.isDefault })
+    }
+    
+    func getDefaultGroupName() -> String
+    {
+        if let group = getDefaultGroup()
+        {
+            return group.name
+        }
+        
+        return "None"
+    }
+    
+    func getDefaultChecklistIndex() -> Int
+    {
+        if let group = getDefaultGroup()
+        {
+            return group.getDefaultChecklistIndex()
+        }
+        return 0
+    }
+    
+    func getDefaultChecklist() -> Checklist?
+    {
+        return getDefaultGroup()?.getDefaultChecklist()
+    }
+    
+    func getDefaultChecklistName() -> String
+    {
+        if let group = getDefaultGroup()
+        {
+            if let checklist = group.getDefaultChecklist()
+            {
+                return checklist.name
+            }
+        }
+        return "None"
+    }
 }
-

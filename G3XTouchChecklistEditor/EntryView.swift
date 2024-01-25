@@ -25,30 +25,35 @@ struct EntryView: View {
                     Text(entry.text)
                         .font(.title2)
                         .foregroundStyle(.gray)
-                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(justification: entry.justification), bottom: 0, trailing: 10))
+                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 10))
+                        .frame(maxWidth: .infinity, alignment: getAlignment(entry.justification))
                 case .note:
                     Text("NOTE: " + entry.text)
                         .font(.title2)
                         .foregroundStyle(.gray)
-                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(justification: entry.justification), bottom: 0, trailing: 10))
+                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 10))
+                        .frame(maxWidth: .infinity, alignment: getAlignment(entry.justification))
                 case .subtitle:
                     Text(entry.text)
                         .font(.title2)
 //                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                         .foregroundStyle(.white)
                         .fontWeight(.bold)
-                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(justification: entry.justification), bottom: 0, trailing: 10))
+                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 10))
+                        .frame(maxWidth: .infinity, alignment: getAlignment(entry.justification))
                 case .warning:
                     Text("WARNING: " + entry.text)
                         .font(.title2)
                         .foregroundStyle(.yellow)
-                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(justification: entry.justification), bottom: 0, trailing: 10))
+                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 10))
+                        .frame(maxWidth: .infinity, alignment: getAlignment(entry.justification))
                 case .caution:
                     Text("CAUTION: " + entry.text)
                         .font(.title2)
 //                        .foregroundStyle(colorScheme == .dark ? .white : .black)
                         .foregroundStyle(.white)
-                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(justification: entry.justification), bottom: 0, trailing: 10))
+                        .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 10))
+                        .frame(maxWidth: .infinity, alignment: getAlignment(entry.justification))
                 case .challenge:
                     HStack
                     {
@@ -66,7 +71,7 @@ struct EntryView: View {
                             .font(.title2)
                             .foregroundStyle(.cyan)
                     }
-                    .padding(EdgeInsets(top: 0, leading: getPaddingAmount(justification: entry.justification), bottom: 0, trailing: 0))
+                    .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 0))
                 }
                 Spacer()
             }
@@ -75,7 +80,7 @@ struct EntryView: View {
     }
 }
 
-private func getPaddingAmount(justification: Justification) -> CGFloat
+private func getPaddingAmount(_ justification: Justification) -> CGFloat
 {
     var paddingAmountForIndent: CGFloat = 0
     
@@ -92,9 +97,21 @@ private func getPaddingAmount(justification: Justification) -> CGFloat
     case .four:
         paddingAmountForIndent = 90
     case .center:
-        paddingAmountForIndent = 15
+        paddingAmountForIndent = 0
     }
     return paddingAmountForIndent
+}
+
+private func getAlignment(_ justification: Justification) -> Alignment
+{
+    var alignment = Alignment.leading
+    
+    if justification == .center
+    {
+        alignment = .center
+    }
+    
+    return alignment
 }
 
 //#Preview {

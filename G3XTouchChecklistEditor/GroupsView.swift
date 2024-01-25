@@ -19,23 +19,28 @@ struct GroupsView: View {
         
         return DisclosureGroup(isExpanded: $group.isExpanded)
         {
-            ChecklistsView(checklists: group.checklists)
+            ChecklistsView(group: group)
         }
     label:
         {
-            Label(group.name, systemImage: "rectangle.3.group.bubble")
-            .onTapGesture(count: 2)
+            HStack
             {
-                showGroupEditSheet.toggle()
-            }
-            .onTapGesture
-            {
-                withAnimation()
+                Label(group.name, systemImage: "rectangle.3.group.bubble.left")
+                    .onTapGesture(count: 2)
                 {
-                    group.isExpanded.toggle()
+                    showGroupEditSheet.toggle()
+                }
+                .onTapGesture
+                {
+                    withAnimation()
+                    {
+                        group.isExpanded.toggle()
+                    }
                 }
             }
         }
+        .font(.title2)
+        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
 #if os(macOS)
         .onTapGesture {
             withAnimation()
@@ -44,7 +49,6 @@ struct GroupsView: View {
             }
         }
 #endif
-        .font(.title2)
         .sheet(isPresented: $showGroupEditSheet)
         {
             GroupEditView(group: group)

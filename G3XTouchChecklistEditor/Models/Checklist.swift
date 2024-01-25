@@ -7,8 +7,14 @@
 
 import Foundation
 import SwiftUI
+import UniformTypeIdentifiers
 
-class Checklist: ObservableObject, Identifiable
+extension UTType
+{
+    static let checklist = UTType(exportedAs: "com.garmin.g3x.checklist")
+}
+
+class Checklist: ObservableObject, Identifiable, Equatable
 {
     static let header = "(0"
     static let footer = ")"
@@ -16,13 +22,30 @@ class Checklist: ObservableObject, Identifiable
     var undoManager: UndoManager?
     @Published var id = UUID()
     @Published var name = ""
+    {
+        didSet
+        {
+            if oldValue != name
+            {
+                undoManager?.setActionName("Change Name")
+                undoManager?.registerUndo(withTarget: self)
+                { checklist in
+                    checklist.undoManager?.setActionName("Change Name")
+                    checklist.name = oldValue
+                }
+            }
+        }
+    }
     @Published var entries:[Entry] = []
+    @Published var isDefault = false
     // Don't like this UI data here but these will stay here until I come up with a better way
     @Published var isExpanded = false
-#if os(iOS)
-    @Published var editMode: EditMode = .inactive
-#endif
 
+    static func == (lhs: Checklist, rhs: Checklist) -> Bool
+    {
+        return lhs.id == rhs.id
+    }
+    
     static func parseChecklists(_ data: inout Data) -> [Checklist]?
     {
         var checklistArray:[Checklist]?
@@ -54,7 +77,7 @@ class Checklist: ObservableObject, Identifiable
         {
             return nil
         }
-        guard let entries = Entry.parseEntries(&data, parent: self) else
+        guard let entries = Entry.parseEntries(&data) else
         {
             return nil
         }
@@ -66,10 +89,18 @@ class Checklist: ObservableObject, Identifiable
         }
     }
     
-    init()
+    init(_ sampleChecklist: Bool = false)
     {
-        name = "Checklist 1"
-        entries = [Entry()]
+        if sampleChecklist
+        {
+            name = "Sample Checklist"
+            entries = createSampleEntries()
+        }
+        else
+        {
+            name = "Checklist 1"
+            entries = [Entry()]
+        }
     }
     
     func exportData(_ data: inout Data) -> Void
@@ -148,14 +179,16 @@ class Checklist: ObservableObject, Identifiable
     {
         entries.move(fromOffsets: fromOffsets, toOffset: toOffset)
         // Only undo if we moved one entry
-//        if fromOffsets.count == 1
-//        {
-//            undoManager?.registerUndo(withTarget: self)
-//            { checklist in
-//                checklist.undoManager?.setActionName("Move Checklist Entry")
-//                checklist.moveEntries(fromOffsets: IndexSet(integer: toOffset), toOffset: fromOffsets.first!)
-//            }
-//        }
+        if fromOffsets.count == 1
+        {
+            undoManager?.setActionName("Move Checklist Entry")
+            undoManager?.registerUndo(withTarget: self)
+            { checklist in
+                checklist.undoManager?.setActionName("Move Checklist Entry")
+                let fromIndex = fromOffsets.first!
+                checklist.moveEntries(fromOffsets: IndexSet(integer: (toOffset > fromIndex ? toOffset - 1 : toOffset)), toOffset: (fromIndex > toOffset ? (fromIndex + 1) : fromIndex))
+            }
+        }
     }
     
     func removeEntries(atOffsets: IndexSet)
@@ -167,6 +200,8 @@ class Checklist: ObservableObject, Identifiable
     {
         let removedEntries: [Entry] = entries.filter( { inSet.contains($0.id) })
         entries.removeAll { inSet.contains($0.id) }
+        
+        undoManager?.setActionName("Remove Checklist Entries")
         undoManager?.registerUndo(withTarget: self)
         { checklist in
             checklist.undoManager?.setActionName("Remove Checklist Entries")
@@ -181,6 +216,7 @@ class Checklist: ObservableObject, Identifiable
                 entryToRemove.id == entry.id
             })
         })
+        undoManager?.setActionName("Remove Checklist Entries")
         undoManager?.registerUndo(withTarget: self)
         { checklist in
             checklist.undoManager?.setActionName("Remove Checklist Entries")
@@ -191,6 +227,8 @@ class Checklist: ObservableObject, Identifiable
     func removeEntry(_ entry: Entry)
     {
         entries.removeAll(where: { $0.id == entry.id })
+
+        undoManager?.setActionName("Remove Checklist Entry")
         undoManager?.registerUndo(withTarget: self)
         { checklist in
             checklist.undoManager?.setActionName("Remove Checklist Entry")
@@ -201,6 +239,8 @@ class Checklist: ObservableObject, Identifiable
     func addEntries(contentsOf: [Entry])
     {
         entries.append(contentsOf: contentsOf)
+        
+        undoManager?.setActionName("Add Checklist Entries")
         undoManager?.registerUndo(withTarget: self)
         { checklist in
             checklist.undoManager?.setActionName("Add Checklist Entries")
@@ -211,6 +251,8 @@ class Checklist: ObservableObject, Identifiable
     func addEntry(_ entry: Entry)
     {
         entries.append(entry)
+
+        undoManager?.setActionName("Add Checklist Entry")
         undoManager?.registerUndo(withTarget: self)
         { checklist in
             checklist.undoManager?.setActionName("Add Checklist Entry")
@@ -218,8 +260,73 @@ class Checklist: ObservableObject, Identifiable
         }
     }
     
+    func addEntry(_ entry: Entry, after: UUID?)
+    {
+        guard let after else
+        {
+            return
+        }
+        if let itemIndex = entries.firstIndex(where: { $0.id == after })
+        {
+            entries.insert(entry, at: itemIndex + 1)
+
+            undoManager?.setActionName("Add Checklist Entry")
+            undoManager?.registerUndo(withTarget: self)
+            { checklist in
+                checklist.undoManager?.setActionName("Add Checklist Entry")
+                checklist.removeEntry(entry)
+            }
+        }
+    }
+    
+    func duplicateEntry(_ id: UUID?)
+    {
+        if let id, let entryToDuplicate = getEntry(id)
+        {
+            let duplicate = entryToDuplicate.duplicate()
+            addEntry(duplicate, after: id)
+        }
+    }
+    
+    func duplicateEntries(_ ids: Set<UUID>)
+    {
+        for id in ids
+        {
+            if let entryToDuplicate = getEntry(id)
+            {
+                let duplicate = entryToDuplicate.duplicate()
+                addEntry(duplicate, after: id)
+            }
+        }
+    }
+    
     func getEntry(_ id: UUID) -> Entry?
     {
         return entries.first(where: { $0.id == id })
+    }
+    
+    func duplicate() -> Checklist
+    {
+        let newChecklist = Checklist()
+        newChecklist.name = self.name + " - Copy"
+        newChecklist.entries = self.entries.map({ $0.duplicate() })
+        
+        return newChecklist
+    }
+    
+    func createSampleEntries() -> [Entry]
+    {
+        var entries = [Entry]()
+        
+        for entryType in SampleEntryType.allCases
+        {
+            if entryType != .none
+            {
+                let entry = Entry(entryType)
+                entries.append(entry)
+            }
+        }
+        
+        return entries
     }
 }

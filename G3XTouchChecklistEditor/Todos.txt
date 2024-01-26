@@ -5,3 +5,5 @@
 - See about adding a tutorial
 - Fix wierd focus on Checklist File Properties
 - Figure out why iOS can't load from the SD card
+- Figure out how to do in-app purchases
+- Add a lite and unlocked mode

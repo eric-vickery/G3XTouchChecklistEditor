@@ -282,11 +282,11 @@ class Entry: ObservableObject, Identifiable, Transferable
     {
         data.append(contentsOf: type.rawValue.data(using: .ascii)!)
         data.append(contentsOf: justification.rawValue.data(using: .ascii)!)
-        data.append(contentsOf: text.data(using: .ascii)!)
+        data.append(contentsOf: text.data(using: .ascii) ?? Data(count: 1))
         if type == .challenge
         {
             data.append(contentsOf: Entry.challengeResponseSeparator.data(using: .ascii)!)
-            data.append(contentsOf: response.data(using: .ascii)!)
+            data.append(contentsOf: response.data(using: .ascii) ?? Data(count: 1))
         }
         data.append(contentsOf: ChecklistFile.separator)
         if numBlankLinesFollowing > 0

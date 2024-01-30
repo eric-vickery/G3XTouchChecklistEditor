@@ -106,7 +106,7 @@ class Checklist: ObservableObject, Identifiable, Equatable
     func exportData(_ data: inout Data) -> Void
     {
         data.append(contentsOf: Checklist.header.data(using: .ascii)!)
-        data.append(contentsOf: name.data(using: .ascii)!)
+        data.append(contentsOf: name.data(using: .ascii) ?? Data(count: 1))
         data.append(contentsOf: ChecklistFile.separator)
         
         for entry in entries

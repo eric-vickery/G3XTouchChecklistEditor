@@ -124,7 +124,7 @@ class Group: ObservableObject, Identifiable, Transferable, Equatable
     func exportData(_ data: inout Data) -> Data
     {
         data.append(contentsOf: Group.header.data(using: .ascii)!)
-        data.append(contentsOf: name.data(using: .ascii)!)
+        data.append(contentsOf: name.data(using: .ascii) ?? Data(count: 1))
         data.append(contentsOf: ChecklistFile.separator)
         
         for checklist in checklists

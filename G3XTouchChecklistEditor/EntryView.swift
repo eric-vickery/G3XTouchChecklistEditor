@@ -55,7 +55,7 @@ struct EntryView: View {
                         .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 10))
                         .frame(maxWidth: .infinity, alignment: getAlignment(entry.justification))
                 case .challenge:
-                    HStack
+                    HStack(alignment: .top)
                     {
                         Image(systemName: "square")
                             .font(.title2)
@@ -63,13 +63,14 @@ struct EntryView: View {
                         Text(entry.text)
                             .font(.title2)
                             .foregroundStyle(.cyan)
-                        Text(String(repeating: ".", count: 200))
+                        Text(String(repeating: ".", count: 400))
                             .lineLimit(1)
                             .font(.title2)
                             .foregroundStyle(.cyan)
                         Text(entry.response)
                             .font(.title2)
                             .foregroundStyle(.cyan)
+                            .multilineTextAlignment(.trailing)
                     }
                     .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 0))
                 }

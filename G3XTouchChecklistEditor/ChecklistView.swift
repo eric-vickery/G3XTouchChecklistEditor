@@ -17,6 +17,7 @@ struct ChecklistView: View
     @State private var selection = Set<UUID>()
     @State var showChecklistEditSheet = false
     @State var selectedChecklist: Checklist = Checklist()
+    @AppStorage("unlocked") var unlocked = false
 
     var body: some View
     {
@@ -59,6 +60,10 @@ struct ChecklistView: View
             .onDeleteCommand(perform:  selection.isEmpty ? nil : { deleteSelection() })
             .copyable(checklist.entries.filter( { selection.contains($0.id) }))
             .pasteDestination(for: Entry.self) { entries in
+                if !unlocked && checklist.entries.count >= 3
+                {
+                    return
+                }
                 checklist.addEntries(contentsOf: entries)
             }
             .cuttable(for: Entry.self, action:
@@ -111,6 +116,7 @@ struct ChecklistView: View
                         Label("Add Item", systemImage: "plus")
                             .labelStyle(.titleAndIcon)
                     }
+                    .disabled(!unlocked && checklist.entries.count >= 3)
                  } else if items.count == 1 { // Single item menu.
                      Button()
                      {
@@ -134,6 +140,7 @@ struct ChecklistView: View
                          Label("Duplicate", systemImage: "plus.square.on.square")
                              .labelStyle(.titleAndIcon)
                      }
+                     .disabled(!unlocked && checklist.entries.count >= 3)
                      Button(role: .destructive)
                      {
                          selection = Set(items)
@@ -154,6 +161,7 @@ struct ChecklistView: View
                          Label("Add Item", systemImage: "plus")
                              .labelStyle(.titleAndIcon)
                      }
+                     .disabled(!unlocked && checklist.entries.count >= 3)
                  } else { // Multi-item menu.
                      Button()
                      {
@@ -164,6 +172,7 @@ struct ChecklistView: View
                          Label("Duplicate", systemImage: "plus.square.on.square")
                              .labelStyle(.titleAndIcon)
                      }
+                     .disabled(!unlocked && checklist.entries.count >= 3)
                      Button(role: .destructive)
                      {
                          deleteSelection()

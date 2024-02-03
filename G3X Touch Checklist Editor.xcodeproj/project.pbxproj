@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB6AF4922B69BF40005FE810 /* ProductSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */; };
 		ABA3F8B02B55F11A006F5355 /* GroupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */; };
 		ABA3F8B22B58DD11006F5355 /* ChecklistEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */; };
 		ABA3F8B42B5B2E52006F5355 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */; };
@@ -29,6 +30,8 @@
 		ABE1C2CF2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2CE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift */; };
 		ABE1C2E52B3FD17000BD40E4 /* CrcSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABE1C2E42B3FD17000BD40E4 /* CrcSwift */; };
 		ABE1C2E82B408ED200BD40E4 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE1C2E72B408ED200BD40E4 /* Checklist.swift */; };
+		ABEDE1132B6B3A47002FC2F3 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEDE1122B6B3A47002FC2F3 /* Store.swift */; };
+		ABEDE1152B6B3C12002FC2F3 /* StoreFile.storekit in Resources */ = {isa = PBXBuildFile; fileRef = ABEDE1142B6B3C12002FC2F3 /* StoreFile.storekit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSheetView.swift; sourceTree = "<group>"; };
 		ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditView.swift; sourceTree = "<group>"; };
 		ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistEditView.swift; sourceTree = "<group>"; };
 		ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
@@ -76,6 +80,8 @@
 		ABE1C2CE2B3FAF7800BD40E4 /* G3XTouchChecklistEditorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G3XTouchChecklistEditorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		ABE1C2E72B408ED200BD40E4 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		ABE1C2F02B40DBFC00BD40E4 /* G3X-Touch-Checklist-Editor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "G3X-Touch-Checklist-Editor-Info.plist"; sourceTree = "<group>"; };
+		ABEDE1122B6B3A47002FC2F3 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		ABEDE1142B6B3C12002FC2F3 /* StoreFile.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = StoreFile.storekit; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,9 @@
 				ABE1C2E62B408E9800BD40E4 /* Models */,
 				ABE1C2B02B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift */,
 				ABE1C2B22B3FAF7700BD40E4 /* MainView.swift */,
+				ABEDE1122B6B3A47002FC2F3 /* Store.swift */,
+				AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */,
+				ABEDE1142B6B3C12002FC2F3 /* StoreFile.storekit */,
 				ABA78DE92B44F46200BD13A2 /* GroupsView.swift */,
 				ABA78DD72B4286A200BD13A2 /* ChecklistPropertiesView.swift */,
 				ABA78DDB2B43AD3700BD13A2 /* ChecklistsView.swift */,
@@ -297,6 +306,7 @@
 			files = (
 				ABE1C2B92B3FAF7800BD40E4 /* Preview Assets.xcassets in Resources */,
 				ABE1C2B52B3FAF7800BD40E4 /* Assets.xcassets in Resources */,
+				ABEDE1152B6B3C12002FC2F3 /* StoreFile.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,7 +334,9 @@
 				ABE1C2B32B3FAF7700BD40E4 /* MainView.swift in Sources */,
 				ABE1C2B12B3FAF7700BD40E4 /* G3XTouchChecklistEditorApp.swift in Sources */,
 				ABA78DDA2B4286E900BD13A2 /* EntryView.swift in Sources */,
+				ABEDE1132B6B3A47002FC2F3 /* Store.swift in Sources */,
 				ABA78DE22B44747500BD13A2 /* Group.swift in Sources */,
+				AB6AF4922B69BF40005FE810 /* ProductSheetView.swift in Sources */,
 				ABA78DED2B4639BD00BD13A2 /* EntryEditView.swift in Sources */,
 				ABA78DDC2B43AD3700BD13A2 /* ChecklistsView.swift in Sources */,
 				ABA78DE82B44F1CC00BD13A2 /* ChecklistView.swift in Sources */,

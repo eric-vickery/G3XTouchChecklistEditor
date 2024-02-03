@@ -14,6 +14,7 @@ struct ChecklistsView: View
     @Environment(\.undoManager) var undoManager
     @State var showChecklistEditSheet = false
     @State var selectedChecklist: Checklist = Checklist()
+    @AppStorage("unlocked") var unlocked = false
 
     var body: some View
     {
@@ -47,6 +48,7 @@ struct ChecklistsView: View
                         Label("Duplicate", systemImage: "plus.square.on.square")
                             .labelStyle(.titleAndIcon)
                     }
+                    .disabled(!unlocked && group.checklists.count >= 3)
                     Button (role: .destructive)
                     {
                         group.removeChecklist(checklist)
@@ -77,6 +79,7 @@ struct ChecklistsView: View
                         Label("Add Checklist", systemImage: "plus.app")
                             .labelStyle(.titleAndIcon)
                     }
+                    .disabled(!unlocked && group.checklists.count >= 3)
                     Button ()
                     {
                         checklist.addEntry(Entry())
@@ -86,6 +89,7 @@ struct ChecklistsView: View
                         Label("Add Item", systemImage: "plus.app")
                             .labelStyle(.titleAndIcon)
                     }
+                    .disabled(!unlocked && checklist.entries.count >= 3)
                 }
         }
         .sheet(isPresented: $showChecklistEditSheet)

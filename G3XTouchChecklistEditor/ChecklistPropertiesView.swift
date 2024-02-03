@@ -10,6 +10,7 @@ import SwiftUI
 struct ChecklistPropertiesView: View {
     @ObservedObject var document: ChecklistFile
     @Environment(\.undoManager) var undoManager
+    @AppStorage("unlocked") var unlocked = false
 
     var body: some View
     {
@@ -98,6 +99,7 @@ struct ChecklistPropertiesView: View {
                 Label("Add Group", systemImage: "plus.app")
                     .labelStyle(.titleAndIcon)
             }
+            .disabled(!unlocked && document.groups.count >= 3)
         }
 #if os(macOS)
         .onTapGesture {

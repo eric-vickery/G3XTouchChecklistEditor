@@ -11,15 +11,31 @@ import UniformTypeIdentifiers
 struct MainView: View {
     @ObservedObject var document: ChecklistFile
     @Environment(\.undoManager) var undoManager
+    @State var showProductSheet = false
     @State var showGroupEditSheet = false
     @State var selectedGroup: Group = Group()
     @AppStorage("hasLaunchedBefore") var hasLaunchedBefore = false
+    @AppStorage("unlocked") var unlocked = false
 
     var body: some View
     {
         document.undoManager = undoManager
         return VStack
         {
+            if !unlocked
+            {
+                HStack(alignment: .center)
+                {
+                    Button()
+                    {
+                        showProductSheet = true
+                    }
+                label:
+                    {
+                        Text("Unlock Full Functionality")
+                    }
+                }
+            }
             ChecklistPropertiesView(document: document)
             Divider()
             ScrollView
@@ -54,6 +70,7 @@ struct MainView: View {
                             Label("Duplicate", systemImage: "plus.square.on.square")
                                 .labelStyle(.titleAndIcon)
                         }
+                        .disabled(!unlocked && document.groups.count >= 3)
                         Button (role: .destructive)
                         {
                             document.removeGroup(group)
@@ -83,6 +100,7 @@ struct MainView: View {
                             Label("Add Group", systemImage: "plus.app")
                                 .labelStyle(.titleAndIcon)
                         }
+                        .disabled(!unlocked && document.groups.count >= 3)
                         Button ()
                         {
                             group.addChecklist(Checklist())
@@ -92,6 +110,7 @@ struct MainView: View {
                             Label("Add Checklist", systemImage: "plus.app")
                                 .labelStyle(.titleAndIcon)
                         }
+                        .disabled(!unlocked && group.checklists.count >= 3)
                     }
                 }
             }
@@ -108,6 +127,10 @@ struct MainView: View {
         .sheet(isPresented: $showGroupEditSheet)
         {
             GroupEditView(group: selectedGroup)
+        }
+        .sheet(isPresented: $showProductSheet)
+        {
+            ProductSheetView()
         }
     }
 }

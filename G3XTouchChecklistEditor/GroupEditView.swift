@@ -24,6 +24,11 @@ struct GroupEditView: View {
                 {
                     dismiss()
                 }
+                .keyboardShortcut(.defaultAction)
+                .onSubmit 
+                {
+                    dismiss()
+                }
             }
         }
         .padding()

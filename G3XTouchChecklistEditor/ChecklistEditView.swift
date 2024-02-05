@@ -24,6 +24,11 @@ struct ChecklistEditView: View {
                 {
                     dismiss()
                 }
+                .keyboardShortcut(.defaultAction)
+                .onSubmit
+                {
+                    dismiss()
+                }
             }
         }
         .padding()

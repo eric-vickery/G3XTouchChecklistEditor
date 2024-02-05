@@ -21,6 +21,11 @@ struct BlankEntryEditView: View
             {
                 dismiss()
             }
+            .keyboardShortcut(.defaultAction)
+            .onSubmit
+            {
+                dismiss()
+            }
         }
         .padding()
     }

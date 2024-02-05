@@ -262,11 +262,22 @@ class Checklist: ObservableObject, Identifiable, Equatable
     
     func addEntry(_ entry: Entry, after: UUID?)
     {
-        guard let after else
+        var entryID = UUID()
+        
+        if let after
         {
-            return
+            entryID = after
         }
-        if let itemIndex = entries.firstIndex(where: { $0.id == after })
+        else
+        {
+            guard let entry = entries.first else
+            {
+                return
+            }
+            entryID = entry.id
+        }
+
+        if let itemIndex = entries.firstIndex(where: { $0.id == entryID })
         {
             entries.insert(entry, at: itemIndex + 1)
 
@@ -322,7 +333,7 @@ class Checklist: ObservableObject, Identifiable, Equatable
         {
             if entryType != .none
             {
-                let entry = Entry(entryType)
+                let entry = Entry(sampleEntryType: entryType)
                 entries.append(entry)
             }
         }

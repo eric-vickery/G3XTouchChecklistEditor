@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB6AF4922B69BF40005FE810 /* ProductSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */; };
+		AB0D84BC2B6EEE4F00C25D1B /* BlankEntryEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D84BB2B6EEE4F00C25D1B /* BlankEntryEditView.swift */; };
 		ABA3F8B02B55F11A006F5355 /* GroupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */; };
 		ABA3F8B22B58DD11006F5355 /* ChecklistEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */; };
 		ABA3F8B42B5B2E52006F5355 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSheetView.swift; sourceTree = "<group>"; };
+		AB0D84BB2B6EEE4F00C25D1B /* BlankEntryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankEntryEditView.swift; sourceTree = "<group>"; };
 		ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditView.swift; sourceTree = "<group>"; };
 		ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistEditView.swift; sourceTree = "<group>"; };
 		ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				ABA78DE52B44E82700BD13A2 /* PropertyExtension.swift */,
 				ABA78DD92B4286E900BD13A2 /* EntryView.swift */,
 				ABA78DEC2B4639BD00BD13A2 /* EntryEditView.swift */,
+				AB0D84BB2B6EEE4F00C25D1B /* BlankEntryEditView.swift */,
 				ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */,
 				ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */,
 				ABA3F8B32B5B2D99006F5355 /* TutorialView.swift */,
@@ -340,6 +343,7 @@
 				ABA78DED2B4639BD00BD13A2 /* EntryEditView.swift in Sources */,
 				ABA78DDC2B43AD3700BD13A2 /* ChecklistsView.swift in Sources */,
 				ABA78DE82B44F1CC00BD13A2 /* ChecklistView.swift in Sources */,
+				AB0D84BC2B6EEE4F00C25D1B /* BlankEntryEditView.swift in Sources */,
 				ABA78DEA2B44F46200BD13A2 /* GroupsView.swift in Sources */,
 				ABA3F8B02B55F11A006F5355 /* GroupEditView.swift in Sources */,
 				ABA78DD82B4286A200BD13A2 /* ChecklistPropertiesView.swift in Sources */,
@@ -507,7 +511,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = G3XTouchChecklistEditor/G3XTouchChecklistEditor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"G3XTouchChecklistEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = CWNCTDGDL5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -552,7 +556,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = G3XTouchChecklistEditor/G3XTouchChecklistEditor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"G3XTouchChecklistEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = CWNCTDGDL5;
 				ENABLE_HARDENED_RUNTIME = YES;

@@ -11,7 +11,7 @@ struct ChecklistView: View
 {
     @ObservedObject var checklist: Checklist
     @State var showEntryEditSheet = false
-    @State var selectedEntry: Entry = Entry()
+    @State var selectedEntry: Entry?
     @Environment(\.defaultMinListRowHeight) var minRowHeight
     @Environment(\.undoManager) var undoManager
     @State private var selection = Set<UUID>()
@@ -50,7 +50,14 @@ struct ChecklistView: View
             }
             .sheet(isPresented: $showEntryEditSheet) 
             {
-                EntryEditView(entry: selectedEntry)
+                if let selectedEntry
+                {
+                    EntryEditView(entry: selectedEntry)
+                }
+                else
+                {
+                    BlankEntryEditView()
+                }
             }
             .scrollContentBackground(.hidden)
             .background(Color.black)
@@ -106,24 +113,13 @@ struct ChecklistView: View
                     .disabled(!undoManager.canRedo)
                 }
 #endif
-                if items.isEmpty { // Empty area menu.
-                    Button()
-                    {
-                        checklist.addEntry(Entry())
-                    }
-                label:
-                    {
-                        Label("Add Item", systemImage: "plus")
-                            .labelStyle(.titleAndIcon)
-                    }
-                    .disabled(!unlocked && checklist.entries.count >= 3)
-                 } else if items.count == 1 { // Single item menu.
+                if items.count == 1 { // Single item menu.
                      Button()
                      {
                          if let foundSelectedEntry = checklist.getEntry(items.first!)
                          {
-                             selectedEntry = foundSelectedEntry
-                             showEntryEditSheet.toggle()
+                             self.selectedEntry = foundSelectedEntry
+                             self.showEntryEditSheet.toggle()
                          }
                      }
                  label:
@@ -151,18 +147,7 @@ struct ChecklistView: View
                          Label("Delete", systemImage: "trash")
                              .labelStyle(.titleAndIcon)
                      }
-                     Divider()
-                     Button()
-                     {
-                         checklist.addEntry(Entry(), after: items.first)
-                     }
-                 label:
-                     {
-                         Label("Add Item", systemImage: "plus")
-                             .labelStyle(.titleAndIcon)
-                     }
-                     .disabled(!unlocked && checklist.entries.count >= 3)
-                 } else { // Multi-item menu.
+                } else if items.count > 1 { // Multi-item menu.
                      Button()
                      {
                          checklist.duplicateEntries(items)
@@ -183,13 +168,89 @@ struct ChecklistView: View
                              .labelStyle(.titleAndIcon)
                      }
                  }
+                Divider()
+                Menu("Add Item")
+                {
+                    Button()
+                    {
+                        let entry = Entry(.text)
+                        checklist.addEntry(entry, after: items.first)
+                        self.selectedEntry = entry
+                        self.showEntryEditSheet.toggle()
+                    }
+                label:
+                    {
+                        Label("Add Text", systemImage: "text.word.spacing")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    Button()
+                    {
+                        let entry = Entry(.note)
+                        checklist.addEntry(entry, after: items.first)
+                        self.selectedEntry = entry
+                        self.showEntryEditSheet.toggle()
+                    }
+                label:
+                    {
+                        Label("Add Note", systemImage: "note.text")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    Button()
+                    {
+                        let entry = Entry(.subtitle)
+                        checklist.addEntry(entry, after: items.first)
+                        self.selectedEntry = entry
+                        self.showEntryEditSheet.toggle()
+                    }
+                label:
+                    {
+                        Label("Add Subtitle", systemImage: "list.dash.header.rectangle")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    Button()
+                    {
+                        let entry = Entry(.warning)
+                        checklist.addEntry(entry, after: items.first)
+                        self.selectedEntry = entry
+                        self.showEntryEditSheet.toggle()
+                    }
+                label:
+                    {
+                        Label("Add Warning", systemImage: "exclamationmark.square.fill")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    Button()
+                    {
+                        let entry = Entry(.caution)
+                        checklist.addEntry(entry, after: items.first)
+                        self.selectedEntry = entry
+                        self.showEntryEditSheet.toggle()
+                    }
+                label:
+                    {
+                        Label("Add Caution", systemImage: "exclamationmark.square")
+                            .labelStyle(.titleAndIcon)
+                    }
+                    Button()
+                    {
+                        let entry = Entry(.challenge)
+                        checklist.addEntry(entry, after: items.first)
+                        self.selectedEntry = entry
+                        self.showEntryEditSheet.toggle()
+                    }
+                label:
+                    {
+                        Label("Add Challenge", systemImage: "square.fill.and.line.vertical.and.square")
+                            .labelStyle(.titleAndIcon)
+                    }
+                }
             } primaryAction: { items in
                 if items.count == 1
                 {
                     if let foundSelectedEntry = checklist.getEntry(items.first!)
                     {
-                        selectedEntry = foundSelectedEntry
-                        showEntryEditSheet.toggle()
+                        self.selectedEntry = foundSelectedEntry
+                        self.showEntryEditSheet.toggle()
                     }
                 }
             }

@@ -1,9 +1,9 @@
 - Add code to put cut/deleted items back where they were cut from on undo
-- Implement Copy in the context menu
-- Figure out why first time in edit it has the wrong item
+- Figure out how to make the correct item get selected the first time
 - Make save/duplicate/etc... add the .ace extention (figure out why the extension is hidden on MacOS)
-- See about adding a tutorial
+- See about adding a tutorial (Maybe 2.0)
 - Fix wierd focus on Checklist File Properties
 - Figure out why iOS can't load from the SD card
 - Figure out how to do in-app purchases
 - Add a lite and unlocked mode
+- Make pressing Enter when editing checklist or group names causes Done

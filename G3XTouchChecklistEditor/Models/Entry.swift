@@ -221,7 +221,7 @@ class Entry: ObservableObject, Identifiable, Transferable
         self.numBlankLinesFollowing = checkForBlankLines(&data)
     }
     
-    init(_ sampleEntryType: SampleEntryType = .none)
+    init(sampleEntryType: SampleEntryType)
     {
         switch sampleEntryType
         {
@@ -270,6 +270,42 @@ class Entry: ObservableObject, Identifiable, Transferable
             type = .caution
             justification = .left
             text = "This is a Caution"
+        case .challenge:
+            type = .challenge
+            justification = .left
+            text = "Challenge"
+            response = "Response"
+        }
+    }
+    
+    init(_ entryType: EntryType = .undefined)
+    {
+        switch entryType
+        {
+        case .undefined:
+            type = .undefined
+            justification = .left
+            text = "New Item"
+        case .text:
+            type = .text
+            justification = .left
+            text = "Plain Text"
+        case .note:
+            type = .note
+            justification = .left
+            text = "Note"
+        case .subtitle:
+            type = .subtitle
+            justification = .left
+            text = "Subtitle"
+        case .warning:
+            type = .warning
+            justification = .left
+            text = "Warning"
+        case .caution:
+            type = .caution
+            justification = .left
+            text = "Caution"
         case .challenge:
             type = .challenge
             justification = .left

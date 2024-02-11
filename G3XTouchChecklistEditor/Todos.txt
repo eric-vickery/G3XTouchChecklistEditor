@@ -6,4 +6,3 @@
 - Figure out why iOS can't load from the SD card
 - Figure out how to do in-app purchases
 - Add a lite and unlocked mode
-- Make pressing Enter when editing checklist or group names causes Done

@@ -132,6 +132,7 @@ struct MainView: View {
         {
             ProductSheetView()
         }
+        .frame(idealWidth: NSApp.keyWindow?.contentView?.bounds.width ?? 500, idealHeight: NSApp.keyWindow?.contentView?.bounds.height ?? 500)
     }
 }
 

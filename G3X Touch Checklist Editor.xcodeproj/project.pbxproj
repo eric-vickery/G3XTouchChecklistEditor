@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB4425652B7D31FE009602F7 /* StoreKitTestCertificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = AB4425642B7D31F8009602F7 /* StoreKitTestCertificate.cer */; };
 		AB6AF4922B69BF40005FE810 /* ProductSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */; };
 		ABA3F8B02B55F11A006F5355 /* GroupEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */; };
 		ABA3F8B22B58DD11006F5355 /* ChecklistEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB4425642B7D31F8009602F7 /* StoreKitTestCertificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreKitTestCertificate.cer; sourceTree = "<group>"; };
 		AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSheetView.swift; sourceTree = "<group>"; };
 		ABA3F8AF2B55EC61006F5355 /* GroupEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEditView.swift; sourceTree = "<group>"; };
 		ABA3F8B12B58DCBF006F5355 /* ChecklistEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistEditView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				ABEDE1122B6B3A47002FC2F3 /* Store.swift */,
 				AB6AF4912B69BF40005FE810 /* ProductSheetView.swift */,
 				ABEDE1142B6B3C12002FC2F3 /* StoreFile.storekit */,
+				AB4425642B7D31F8009602F7 /* StoreKitTestCertificate.cer */,
 				ABA78DE92B44F46200BD13A2 /* GroupsView.swift */,
 				ABA78DD72B4286A200BD13A2 /* ChecklistPropertiesView.swift */,
 				ABA78DDB2B43AD3700BD13A2 /* ChecklistsView.swift */,
@@ -307,6 +310,7 @@
 				ABE1C2B92B3FAF7800BD40E4 /* Preview Assets.xcassets in Resources */,
 				ABE1C2B52B3FAF7800BD40E4 /* Assets.xcassets in Resources */,
 				ABEDE1152B6B3C12002FC2F3 /* StoreFile.storekit in Resources */,
+				AB4425652B7D31FE009602F7 /* StoreKitTestCertificate.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +511,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = G3XTouchChecklistEditor/G3XTouchChecklistEditor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"G3XTouchChecklistEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = CWNCTDGDL5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -552,7 +556,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = G3XTouchChecklistEditor/G3XTouchChecklistEditor.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"G3XTouchChecklistEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = CWNCTDGDL5;
 				ENABLE_HARDENED_RUNTIME = YES;

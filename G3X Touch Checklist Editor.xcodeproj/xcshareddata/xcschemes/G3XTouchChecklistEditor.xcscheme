@@ -73,6 +73,9 @@
             ReferencedContainer = "container:G3X Touch Checklist Editor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../../G3XTouchChecklistEditor/StoreFile.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

@@ -18,20 +18,22 @@ struct ProductSheetView: View {
             if store.products.isEmpty
             {
                 ProgressView()
-            } 
+            }
             else
             {
+                Text("Fully unlock all the functionality including removing the 3 item limit on groups and checklists")
+                    .multilineTextAlignment(.center)
                 ForEach(store.products, id: \.id) { product in
-                    Button 
+                    Button
                     {
-                        Task 
+                        Task
                         {
                             try await store.purchase(product)
                         }
-                    } 
+                    }
                 label:
                     {
-                        VStack 
+                        VStack
                         {
                             Text(verbatim: product.displayName)
                                 .font(.headline)
@@ -41,15 +43,15 @@ struct ProductSheetView: View {
                     .buttonStyle(.borderedProminent)
                 }
             }
-//            ProductView(id: "com.serenitymountainranch.G3XTouchChecklistEditor.unlock")
-//                .productViewStyle(.large)
             Spacer()
             Button("Done")
             {
                 dismiss()
             }
         }
+        .padding()
         .task {
             await store.fetchProducts()
-        }    }
+        }
+    }
 }

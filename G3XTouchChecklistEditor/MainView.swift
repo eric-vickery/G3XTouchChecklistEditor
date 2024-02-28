@@ -22,20 +22,20 @@ struct MainView: View {
         document.undoManager = undoManager
         return VStack
         {
-            if !unlocked
-            {
-                HStack(alignment: .center)
-                {
-                    Button()
-                    {
-                        showProductSheet = true
-                    }
-                label:
-                    {
-                        Text("Unlock Full Functionality")
-                    }
-                }
-            }
+//            if !unlocked
+//            {
+//                HStack(alignment: .center)
+//                {
+//                    Button()
+//                    {
+//                        showProductSheet = true
+//                    }
+//                label:
+//                    {
+//                        Text("Unlock Full Functionality")
+//                    }
+//                }
+//            }
             ChecklistPropertiesView(document: document)
             Divider()
             ScrollView

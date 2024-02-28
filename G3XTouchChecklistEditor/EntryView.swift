@@ -21,7 +21,7 @@ struct EntryView: View {
             {
                 switch entry.type
                 {
-                case .undefined, .text:
+                case .text:
                     Text(entry.text)
                         .font(.title2)
                         .foregroundStyle(.gray)
@@ -63,16 +63,38 @@ struct EntryView: View {
                         Text(entry.text)
                             .font(.title2)
                             .foregroundStyle(.cyan)
-                        Text(String(repeating: ".", count: 400))
-                            .lineLimit(1)
-                            .font(.title2)
-                            .foregroundStyle(.cyan)
-                        Text(entry.response)
-                            .font(.title2)
-                            .foregroundStyle(.cyan)
-                            .multilineTextAlignment(.trailing)
+                        if !entry.response.isEmpty
+                        {
+                            Text(String(repeating: ".", count: 400))
+                                .lineLimit(1)
+                                .font(.title2)
+                                .foregroundStyle(.cyan)
+                            Text(entry.response)
+                                .font(.title2)
+                                .foregroundStyle(.cyan)
+                                .multilineTextAlignment(.trailing)
+                        }
                     }
                     .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 0))
+//                case .challenge_response:
+//                    HStack(alignment: .top)
+//                    {
+//                        Image(systemName: "square")
+//                            .font(.title2)
+//                            .foregroundStyle(.cyan)
+//                        Text(entry.text)
+//                            .font(.title2)
+//                            .foregroundStyle(.cyan)
+//                        Text(String(repeating: ".", count: 400))
+//                            .lineLimit(1)
+//                            .font(.title2)
+//                            .foregroundStyle(.cyan)
+//                        Text(entry.response)
+//                            .font(.title2)
+//                            .foregroundStyle(.cyan)
+//                            .multilineTextAlignment(.trailing)
+//                    }
+//                    .padding(EdgeInsets(top: 0, leading: getPaddingAmount(entry.justification), bottom: 0, trailing: 0))
                 }
                 Spacer()
             }

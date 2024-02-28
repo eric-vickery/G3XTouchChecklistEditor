@@ -20,25 +20,25 @@ enum EntryType: String, CaseIterable, Identifiable, CustomStringConvertible
         return self
     }
     
-    case undefined = "c"
     case text = "p"
     case note = "n"
     case subtitle = "t"
     case warning = "w"
     case caution = "a"
-    case challenge = "r"
+    case challenge = "c"
+//    case challenge_response = "r"
     
     var description: String
     {
         switch self
         {
-        case .undefined: return "Undefined"
         case .text: return "Text"
         case .note: return "Note"
         case .subtitle: return "Subtitle"
         case .warning: return "Warning"
         case .caution: return "Caution"
-        case .challenge: return "Challange/Response"
+        case .challenge: return "Challenge"
+//        case .challenge_response: return "Challenge/Response"
         }
     }
 }
@@ -57,6 +57,7 @@ enum SampleEntryType: Int, CaseIterable
     case warning
     case caution
     case challenge
+//    case challenge_response
 }
 
 enum Justification: String, CaseIterable, Identifiable, CustomStringConvertible
@@ -92,7 +93,8 @@ class Entry: ObservableObject, Identifiable, Transferable
     
     var undoManager: UndoManager?
     @Published var id = UUID()
-    @Published var type:EntryType = .undefined
+    var originalTypeString = ""
+    @Published var type:EntryType = .challenge
     {
         didSet
         {
@@ -226,9 +228,9 @@ class Entry: ObservableObject, Identifiable, Transferable
         switch sampleEntryType
         {
         case .none:
-            type = .undefined
+            type = .challenge
             justification = .left
-            text = "New Item"
+            text = "Challenge"
         case .textLeft:
             type = .text
             justification = .left
@@ -275,17 +277,18 @@ class Entry: ObservableObject, Identifiable, Transferable
             justification = .left
             text = "Challenge"
             response = "Response"
+//        case .challenge_response:
+//            type = .challenge_response
+//            justification = .left
+//            text = "Challenge"
+//            response = "Response"
         }
     }
     
-    init(_ entryType: EntryType = .undefined)
+    init(_ entryType: EntryType = .challenge)
     {
         switch entryType
         {
-        case .undefined:
-            type = .undefined
-            justification = .left
-            text = "New Item"
         case .text:
             type = .text
             justification = .left
@@ -310,16 +313,28 @@ class Entry: ObservableObject, Identifiable, Transferable
             type = .challenge
             justification = .left
             text = "Challenge"
-            response = "Response"
+//        case .challenge_response:
+//            type = .challenge_response
+//            justification = .left
+//            text = "Challenge"
+//            response = "Response"
         }
     }
     
     func exportData(_ data: inout Data) -> Data
     {
-        data.append(contentsOf: type.rawValue.data(using: .ascii)!)
+        // If the type is a challenge (c) and the response is not empty then change the type to challenge/response (r)
+        if type == .challenge && !response.isEmpty
+        {
+            data.append(contentsOf: "r".data(using: .ascii)!)
+        }
+        else
+        {
+            data.append(contentsOf: type.rawValue.data(using: .ascii)!)
+        }
         data.append(contentsOf: justification.rawValue.data(using: .ascii)!)
         data.append(contentsOf: text.data(using: .ascii) ?? Data(count: 1))
-        if type == .challenge
+        if type == .challenge && !response.isEmpty
         {
             data.append(contentsOf: Entry.challengeResponseSeparator.data(using: .ascii)!)
             data.append(contentsOf: response.data(using: .ascii) ?? Data(count: 1))
@@ -339,7 +354,13 @@ class Entry: ObservableObject, Identifiable, Transferable
     {
         let byte1 = data.first!
         
-        guard let type = EntryType(rawValue: String(UnicodeScalar(byte1))) else
+        originalTypeString = String(UnicodeScalar(byte1))
+        var typeString = originalTypeString
+        if typeString == "r"
+        {
+            typeString = "c"
+        }
+        guard let type = EntryType(rawValue: typeString) else
         {
             return false
         }
@@ -398,7 +419,7 @@ class Entry: ObservableObject, Identifiable, Transferable
     
     func parseText(_ data: inout Data) -> Bool
     {
-        if self.type == .challenge
+        if originalTypeString == "r"
         {
             // Split at the ~
             guard let name = parseString(&data, terminator: 0x7E, removeTrailing: false) else

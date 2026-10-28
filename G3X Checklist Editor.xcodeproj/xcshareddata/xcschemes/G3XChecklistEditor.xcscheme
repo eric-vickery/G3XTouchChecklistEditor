@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1510"
+   LastUpgradeVersion = "1610"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ABE1C2AC2B3FAF7700BD40E4"
-               BuildableName = "G3X Touch Checklist Editor.app"
-               BlueprintName = "G3X Touch Checklist Editor"
-               ReferencedContainer = "container:G3X Touch Checklist Editor.xcodeproj">
+               BuildableName = "G3X Checklist Editor.app"
+               BlueprintName = "G3X Checklist Editor"
+               ReferencedContainer = "container:G3X Checklist Editor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,9 +35,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ABE1C2BD2B3FAF7800BD40E4"
-               BuildableName = "G3X Touch Checklist EditorTests.xctest"
-               BlueprintName = "G3X Touch Checklist EditorTests"
-               ReferencedContainer = "container:G3X Touch Checklist Editor.xcodeproj">
+               BuildableName = "G3X Checklist EditorTests.xctest"
+               BlueprintName = "G3X Checklist EditorTests"
+               ReferencedContainer = "container:G3X Checklist Editor.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -46,9 +46,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ABE1C2C72B3FAF7800BD40E4"
-               BuildableName = "G3X Touch Checklist EditorUITests.xctest"
-               BlueprintName = "G3X Touch Checklist EditorUITests"
-               ReferencedContainer = "container:G3X Touch Checklist Editor.xcodeproj">
+               BuildableName = "G3X Checklist EditorUITests.xctest"
+               BlueprintName = "G3X Checklist EditorUITests"
+               ReferencedContainer = "container:G3X Checklist Editor.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -68,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABE1C2AC2B3FAF7700BD40E4"
-            BuildableName = "G3X Touch Checklist Editor.app"
-            BlueprintName = "G3X Touch Checklist Editor"
-            ReferencedContainer = "container:G3X Touch Checklist Editor.xcodeproj">
+            BuildableName = "G3X Checklist Editor.app"
+            BlueprintName = "G3X Checklist Editor"
+            ReferencedContainer = "container:G3X Checklist Editor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ABE1C2AC2B3FAF7700BD40E4"
-            BuildableName = "G3X Touch Checklist Editor.app"
-            BlueprintName = "G3X Touch Checklist Editor"
-            ReferencedContainer = "container:G3X Touch Checklist Editor.xcodeproj">
+            BuildableName = "G3X Checklist Editor.app"
+            BlueprintName = "G3X Checklist Editor"
+            ReferencedContainer = "container:G3X Checklist Editor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -10,7 +10,7 @@
 			<key>CFBundleTypeIconSystemGenerated</key>
 			<integer>0</integer>
 			<key>CFBundleTypeName</key>
-			<string>G3X Touch Checklists</string>
+			<string>G3X Checklists</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
@@ -29,7 +29,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>G3X Touch Checklist</string>
+			<string>G3X Checklist</string>
 			<key>UTTypeIconFile</key>
 			<string>File_Icon</string>
 			<key>UTTypeIcons</key>
@@ -55,7 +55,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>G3X Touch Checklist Entry</string>
+			<string>G3X Checklist Entry</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
@@ -69,7 +69,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>G3X Touch Checklist Group</string>
+			<string>G3X Checklist Group</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
@@ -83,7 +83,7 @@
 				<string>public.data</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>G3X Touch Checklist</string>
+			<string>G3X Checklist</string>
 			<key>UTTypeIcons</key>
 			<dict/>
 			<key>UTTypeIdentifier</key>
